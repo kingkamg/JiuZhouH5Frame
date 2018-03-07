@@ -13,8 +13,7 @@ let EventNode = cc.Class({
         this.m_objNext = null;
 
         // 赋值
-        let arg = arguments;
-        this.setData( arg[0] )
+        this.setData( arguments[0] )
     },
 
     /**

@@ -1,16 +1,18 @@
-/**
- * 事件ID段
- */
-let EVENT_ID = {
-    UI: 0,
-
-};
 
 /**
  * 间隔ID
  * @type {number}
  */
-let SPAN_ID = 3000;
+const SPAN_ID = 3000;
+
+/**
+ * 事件ID段
+ * @type {{VIEW: number, NET: number}}
+ */
+let EVENT_ID = {
+    VIEW: 0,
+    NET: SPAN_ID * 1,
+};
 
 module.exports = {
     EVENT_ID: EVENT_ID,

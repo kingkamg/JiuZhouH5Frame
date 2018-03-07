@@ -1,10 +1,10 @@
 /**
- * 消息基类
+ * 消息节点
  */
 
 let DefMsg = require( "DefMsg" );
 
-cc.Class({
+let MsgNode = cc.Class({
 
     /**
      * 构造
@@ -14,6 +14,8 @@ cc.Class({
         this.m_nId = 0;
         // 数据
         this.m_objData = null;
+        // 错误
+        this.m_strError = "";
 
     },
 
@@ -58,4 +60,22 @@ cc.Class({
         return this.m_objData;
     },
 
+    /**
+     * 设置错误原因
+      * @param error
+     */
+    setError( error ) {
+        this.m_strError = error;
+    },
+
+    /**
+     * 获取错误原因
+     * @returns {string|*}
+     */
+    getError() {
+        return this.m_strError;
+    },
+
 });
+
+module.exports = MsgNode;

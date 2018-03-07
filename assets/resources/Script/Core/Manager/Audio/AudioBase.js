@@ -24,8 +24,7 @@ let AudioBase = cc.Class({
         this.m_nState = DefAudio.STATE.INITIALZING;
 
         // 赋值
-        let arg = arguments;
-        this.setData( arg[0], arg[1], arg[2] );
+        this.setData( arguments[0], arguments[1], arguments[2] );
     },
 
     setData( path, loop, volume ) {
