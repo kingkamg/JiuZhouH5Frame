@@ -4,7 +4,6 @@
 
 let Utils = require( "Utils" );
 let List = require( "List" );
-let EventNode = require( "EventNode" );
 
 let EventBase = cc.Class({
 
@@ -28,19 +27,18 @@ let EventBase = cc.Class({
             this.m_objMsgList[msgId] = new List();
         }
         let list = this.m_objMsgList[msgId];
-        let eventNode = new EventNode( script );
-        list.insert( eventNode );
+        list.insert( script );
     },
 
     /**
      * 内部函数 注册事件_2
      * @param script
-     * @param msgIdList
+     * @param msgIds
      * @private
      */
-    _register2( script, msgIdList ) {
-        for( let i = 0; i < msgIdList.length; ++i ) {
-            this._register1( script, msgIdList[i] );
+    _register2( script, msgIds ) {
+        for( let i = 0; i < msgIds.length; ++i ) {
+            this._register1( script, msgIds[i] );
         }
     },
 
@@ -61,7 +59,7 @@ let EventBase = cc.Class({
         let param2 = arguments[1];
 
         // 脚本 注册 一个事件ID
-        if( Utils.isObject( param2 ) && Utils.isNumber( param1 ) ) {
+        if( Utils.isObject( param1 ) && Utils.isNumber( param2 ) ) {
             this._register1( param1, param2 );
         // 脚本 注册 多个事件ID
         } else if( Utils.isObject( param1 ) && Utils.isArray( param2 ) ) {
@@ -77,7 +75,7 @@ let EventBase = cc.Class({
      */
     _unRegister1( script, msgId ) {
         let list = this.m_objMsgList[msgId];
-        if( !Utils.isNull( list ) && !Utils( list.find( script ) ) ) {
+        if( !Utils.isNull( list ) && !Utils.isNull( list.find( script ) ) ) {
             list.delete( script );
             if( list.size() <= 0 ) {
                 this.m_objMsgList.delete( msgId );
@@ -89,12 +87,12 @@ let EventBase = cc.Class({
     /**
      * 内部函数 删除注册事件_2
      * @param script
-     * @param msgIdList
+     * @param msgIds
      * @private
      */
-    _unRegister2( script, msgIdList ) {
-        for( let i = 0; i < msgIdList.length; ++i ) {
-            this._unRegister1( script, msgIdList[i] );
+    _unRegister2( script, msgIds ) {
+        for( let i = 0; i < msgIds.length; ++i ) {
+            this._unRegister1( script, msgIds[i] );
         }
     },
 
@@ -123,7 +121,7 @@ let EventBase = cc.Class({
     },
 
     /**
-     * 发送 消息事件
+     * 发送 消息事件（提供给子类重写函数，无需实现）
      * @param msgNode
      */
     sendMsg( msgNode ) {

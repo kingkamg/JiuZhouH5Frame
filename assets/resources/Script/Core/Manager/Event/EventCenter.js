@@ -3,6 +3,7 @@
  * @type {Function}
  */
 let DefMsg = require( "DefMsg" );
+let EventManager = require( "EventManager" );
 
 // 实例化对象
 let instance = null;
@@ -20,7 +21,7 @@ let EventCenter = cc.Class({
          */
         getInstance() {
             if( instance === null ) {
-                instance = new EventManager();
+                instance = new EventCenter();
             }
             return instance;
         },
@@ -41,9 +42,12 @@ let EventCenter = cc.Class({
         let eventId = msgNode.getEventId();
         switch( eventId ) {
             case DefMsg.EVENT_ID.VIEW:
-
+                EventManager.getEventView().sendMsg( msgNode );
                 break;
             case DefMsg.EVENT_ID.NET:
+                EventManager.getEventNet().sendMsg( msgNode );
+                break;
+            default:
 
                 break;
         }

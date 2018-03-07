@@ -1,15 +1,14 @@
-// Learn cc.Class:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/class.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/class/index.html
-// Learn Attribute:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/reference/attributes.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/reference/attributes/index.html
-// Learn life-cycle callbacks:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
+/**
+ * 测试
+ */
+
+let ViewBase = require( "ViewBase" );
+let DefMsg = require( "DefMsg" );
+let EventManager = require( "EventManager" );
+let Utils = require( "Utils" );
 
 cc.Class({
-    extends: cc.Component,
+    extends: ViewBase,
 
     properties: {
         // foo: {
@@ -29,22 +28,26 @@ cc.Class({
         // },
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
     start () {
         this.initData();
         this.initView();
         this.register();
-        this.test();
+    },
+
+    onDestroy() {
+        if( !Utils.isNull( this.msgIds ) && this.msgIds.length > 0 ) {
+            this.unRegisterEvent( this, this.msgIds );
+        }
     },
 
     /**
      * 初始化数据
      */
     initData() {
-        this.m_objList = { a: 1, b: 2, c: 3, d: 4 };
+        this.msgIds = [
+            DefMsg.CUSTOM_ID.TEST_0,
+            DefMsg.CUSTOM_ID.TEST_1,
+        ]
     },
 
     /**
@@ -58,26 +61,37 @@ cc.Class({
      * 注册
      */
     register() {
-
-    },
-
-    /**
-     * 遍历
-     */
-    forEach( callback ) {
-        for( let key in this.m_objList ) {
-            callback( this.m_objList[key] );
+        if( !Utils.isNull( this.msgIds ) && this.msgIds.length > 0 ) {
+            this.registerEvent( this, this.msgIds );
         }
     },
 
     /**
-     * 测试
+     * 点击卸载事件 回调
      */
-    test() {
-        this.forEach( function( num ) {
-            cc.log( num );
-        } );
+    onUnRegister() {
+        if( !Utils.isNull( this.msgIds ) && this.msgIds.length > 0 ) {
+            this.unRegisterEvent( this, this.msgIds );
+        }
     },
+
+    /**
+     * 消息事件
+     * @param msgNode
+     */
+    onMessageEvent( msgNode ) {
+        switch( msgNode.getId() ) {
+            case DefMsg.CUSTOM_ID.TEST_0:
+                cc.log( "TEST_0" );
+                break;
+            case DefMsg.CUSTOM_ID.TEST_1:
+                cc.log( "TEST_1" );
+                break;
+            default:
+
+                break;
+        }
+    }
 
     // update (dt) {},
 });

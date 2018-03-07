@@ -2,6 +2,9 @@
  * 事件管理器
  */
 
+let EventView = require( "EventView" );
+let EventNet = require( "EventNet" );
+
 // 实例化对象
 let instance = null;
 
@@ -28,10 +31,10 @@ let EventManager = cc.Class({
      * 构造
      */
     ctor() {
-        // 视图事件
-        this.m_objEventView = null;
-        // 网络事件
-        this.m_objEventNet = null;
+        // 视图事件对象
+        this.m_objEventView = new EventView();
+        // 网络事件对象
+        this.m_objEventNet = new EventNet();
 
     },
 

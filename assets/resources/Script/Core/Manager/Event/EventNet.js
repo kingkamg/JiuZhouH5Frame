@@ -1,12 +1,12 @@
 /**
- * 视图事件
+ * 网络事件
  */
 
 let EventBase = require( "EventBase" );
 let EventCenter = require( "EventCenter" );
 let DefMsg = require( "DefMsg" );
 
-let EventView = cc.Class({
+let EventNet = cc.Class({
     extends: EventBase,
 
     /**
@@ -21,7 +21,7 @@ let EventView = cc.Class({
      * @param msgNode
      */
     sendMsg( msgNode ) {
-        if( msgNode.getEventId() === DefMsg.EVENT_ID.VIEW ) {
+        if( msgNode.getEventId() === DefMsg.EVENT_ID.NET ) {
             this.onMessageEvent( msgNode );
         } else {
             EventCenter.getInstance().sendMsg( msgNode );
@@ -30,4 +30,4 @@ let EventView = cc.Class({
 
 });
 
-module.export = EventView;
+module.export = EventNet;

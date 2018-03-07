@@ -96,7 +96,7 @@ let List = cc.Class({
      */
     getFirst() {
         let firstNode = this.m_node;
-        while( !Utils( firstNode ) ) {
+        while( !Utils.isNull( firstNode ) ) {
             if( Utils.isNull( firstNode.getPrev() ) ) {
                 break;
             }
@@ -111,7 +111,7 @@ let List = cc.Class({
      */
     getLast() {
         let lastNode = this.m_node;
-        while( !Utils( lastNode ) ) {
+        while( !Utils.isNull( lastNode ) ) {
             if( Utils.isNull( lastNode.getNext() ) ) {
                 break;
             }
@@ -195,24 +195,21 @@ let List = cc.Class({
      * 插入节点 到 链表中
      *
      * 一、通过数据插入到前后链表
-     * 参数1 data 数据
-     * 参数2 about 前后（-1 前，1, 后）
+     * 参数1 data object 数据
+     * 参数2 about number 前后（-1 前，1, 后）
      *
      * 二、通过节点来插入数据
-     * 参数1 node 节点
-     * 参数2 data 数据
-     * 参数3 about 前后（-1 前，1 后）
+     * 参数1 node object 节点
+     * 参数2 data object 数据
+     * 参数3 about number 前后（-1 前，1 后）
      */
     insert() {
         let arg = arguments;
-        let len = arg.length;
 
-        if( len === 2 ) {
+        if( Utils.isObject( arg[0] ) && ( Utils.isNumber( arg[1] ) || Utils.isNull( arg[1] ) ) ) {
             // 通过数据插入到前后链表
-            if( Utils.isObject( arg[0] ) && Utils.isNumber( arg[1] ) ) {
-                this._insert1( arg[0], arg[1] );
-            }
-        } else if( len === 3 ) {
+            this._insert1( arg[0], arg[1] );
+        } else if( Utils.isObject( arg[0] ) && Utils.isObject( arg[1] ) && ( Utils.isNumber( arg[2] ) || Utils.isNull( arg[2] ) ) ) {
             // 通过节点来插入数据
             if( Utils.isObject( arg[0] ) && Utils.isNumber( arg[2] ) ) {
                 this._insert2( arg[0], arg[1], arg[2] );
@@ -268,7 +265,7 @@ let List = cc.Class({
         let node = this.getFirst();
         while( !Utils.isNull( node ) ) {
             let nextNode = node.getNext();
-            node.clean();
+            node.destroy();
             node = nextNode;
         }
     },

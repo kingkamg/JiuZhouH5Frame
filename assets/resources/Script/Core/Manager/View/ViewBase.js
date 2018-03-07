@@ -2,6 +2,9 @@
  * 视图基类
  */
 
+let Utils = require( "Utils" );
+let EventManager = require( "EventManager" );
+
 cc.Class({
     extends: cc.Component,
 
@@ -79,18 +82,50 @@ cc.Class({
     // },
 
     /**
-     * 注册事件
+     * 初始化数据
      */
-    registerSelf() {
+    initData() {
 
     },
 
     /**
-     * 卸载事件
+     * 初始化视图
      */
-    unRegisterSelf() {
+    initView() {
 
     },
 
+    /**
+     * 注册
+     */
+    register(){
+
+    },
+
+    /**
+     * 注册事件
+     * @param script
+     * @param msgIds
+     */
+    registerEvent( script, msgIds ) {
+        EventManager.getInstance().getEventView().register( script, msgIds );
+    },
+
+    /**
+     * 卸载事件
+     * @param script
+     * @param msgIds
+     */
+    unRegisterEvent( script, msgIds ) {
+        EventManager.getInstance().getEventView().unRegister( script, msgIds );
+    },
+
+    /**
+     * 发送消息
+     * @param msgNode
+     */
+    sendMsg( msgNode ) {
+        EventManager.getInstance().getEventView().sendMsg( msgNode );
+    },
 
 });
