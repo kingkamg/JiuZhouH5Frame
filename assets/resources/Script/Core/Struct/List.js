@@ -224,10 +224,16 @@ let List = cc.Class({
     delete( data ) {
         let delNode = this.find( data );
 
+        if( Utils.isNull( delNode ) ) {
+            return ;
+        }
+
         let prevNode = delNode.getPrev();
         if( Utils.isNull( prevNode ) ) {
             let nextNode = delNode.getNext();
-            nextNode.setPrev( null );
+            if( !Utils.isNull( nextNode ) ) {
+                nextNode.setPrev( null );
+            }
         } else {
             prevNode.setNext( delNode.getNext() );
         }
@@ -235,13 +241,21 @@ let List = cc.Class({
         let nextNode = delNode.getNext();
         if( Utils.isNull( nextNode ) ) {
             let prevNode = delNode.getPrev();
-            prevNode.setNext( null );
+            if( !Utils.isNull( prevNode ) ) {
+                prevNode.setNext( null );
+            }
         } else {
             nextNode.setPrev( delNode.getPrev() );
         }
 
+        // 临界点
+        if( Utils.isNull( delNode.getNext() ) && Utils.isNull( delNode.getPrev() ) ) {
+            this.m_node = null;
+        }
+
         delNode.destroy();
         delNode = null;
+
     },
 
     /**

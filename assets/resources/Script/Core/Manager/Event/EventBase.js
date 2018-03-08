@@ -77,8 +77,7 @@ let EventBase = cc.Class({
         let list = this.m_objMsgList[msgId];
         if( !Utils.isNull( list ) && !Utils.isNull( list.find( script ) ) ) {
             list.delete( script );
-            if( list.size() <= 0 ) {
-                this.m_objMsgList.delete( msgId );
+            if( list.getSize() <= 0 ) {
                 delete this.m_objMsgList[msgId];
             }
         }
@@ -139,8 +138,6 @@ let EventBase = cc.Class({
                 let data = node.getData();
                 data.onMessageEvent( msgNode );
             } );
-        } else {
-            cc.warn( "未找到消息 [" + msgId + "]" );
         }
     },
 

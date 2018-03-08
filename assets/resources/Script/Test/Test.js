@@ -67,6 +67,13 @@ cc.Class({
     },
 
     /**
+     * 点击注册事件 回调
+     */
+    onRegister(){
+        this.register();
+    },
+
+    /**
      * 点击卸载事件 回调
      */
     onUnRegister() {

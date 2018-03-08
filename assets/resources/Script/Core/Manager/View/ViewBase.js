@@ -121,10 +121,10 @@ cc.Class({
     },
 
     /**
-     * 发送消息
+     * 发送事件
      * @param msgNode
      */
-    sendMsg( msgNode ) {
+    sendEvent( msgNode ) {
         EventManager.getInstance().getEventView().sendMsg( msgNode );
     },
 

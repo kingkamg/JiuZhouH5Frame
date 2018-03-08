@@ -5,7 +5,7 @@
 // 实例化对象
 let instance = null;
 
-cc.Class({
+let ViewManager = cc.Class({
 
     /**
      * 静态
@@ -18,7 +18,7 @@ cc.Class({
          */
         getInstance() {
             if( instance === null ) {
-                instance = new AudioManager();
+                instance = new ViewManager();
             }
             return instance;
         },
@@ -33,6 +33,19 @@ cc.Class({
 
     },
 
+    openView(){
+
+    },
+
+    closeView(){
+
+    },
+
+    openScene(){
+
+    },
 
 
 });
+
+module.exports = ViewManager;

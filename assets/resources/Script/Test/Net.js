@@ -1,15 +1,15 @@
-/**
- * 按钮
- */
-
-let ViewBase = require( "ViewBase" );
-let DefMsg = require( "DefMsg" );
-let MsgNode = require( "MsgNode" );
-
-const SEND_COUNT = 1;
+// Learn cc.Class:
+//  - [Chinese] http://www.cocos.com/docs/creator/scripting/class.html
+//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/class/index.html
+// Learn Attribute:
+//  - [Chinese] http://www.cocos.com/docs/creator/scripting/reference/attributes.html
+//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/reference/attributes/index.html
+// Learn life-cycle callbacks:
+//  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
+//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
 
 cc.Class({
-    extends: ViewBase,
+    extends: cc.Component,
 
     properties: {
         // foo: {
@@ -35,18 +35,6 @@ cc.Class({
 
     start () {
 
-    },
-
-    /**
-     * 发送消息
-     */
-    onSendMsg() {
-        let msgNode = new MsgNode();
-        msgNode.setId( DefMsg.CUSTOM_ID.TEST_1 );
-        msgNode.setData( 999 );
-        for( let i = 0; i < SEND_COUNT; ++i ) {
-            this.sendEvent( msgNode );
-        }
     },
 
     // update (dt) {},
