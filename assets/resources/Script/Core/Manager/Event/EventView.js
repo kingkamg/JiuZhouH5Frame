@@ -18,13 +18,13 @@ let EventView = cc.Class({
 
     /**
      * 发送 消息事件
-     * @param msgNode
+     * @param msg
      */
-    sendMsg( msgNode ) {
-        if( msgNode.getEventId() === DefMsg.EVENT_ID.VIEW ) {
-            this.onMessageEvent( msgNode );
+    sendMsg( msg ) {
+        if( msg.getEventId() === DefMsg.EVENT.VIEW ) {
+            this.onMessageEvent( msg );
         } else {
-            EventCenter.getInstance().sendMsg( msgNode );
+            EventCenter.getInstance().sendMsg( msg );
         }
     },
 

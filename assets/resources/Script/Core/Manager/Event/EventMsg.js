@@ -4,7 +4,7 @@
 
 let DefMsg = require( "DefMsg" );
 
-let MsgNode = cc.Class({
+let EventMsg = cc.Class({
 
     /**
      * 构造
@@ -24,8 +24,8 @@ let MsgNode = cc.Class({
      * @returns {number}
      */
     getEventId() {
-        let eventId = Math.floor( this.m_nId / DefMsg.SPAN_ID );
-        return eventId * DefMsg.SPAN_ID;
+        let eventId = Math.floor( this.m_nId / DefMsg.SPAN );
+        return eventId * DefMsg.SPAN;
     },
 
     /**
@@ -78,4 +78,4 @@ let MsgNode = cc.Class({
 
 });
 
-module.exports = MsgNode;
+module.exports = EventMsg;

@@ -77,7 +77,7 @@ let EventBase = cc.Class({
         let list = this.m_objMsgList[msgId];
         if( !Utils.isNull( list ) && !Utils.isNull( list.find( script ) ) ) {
             list.delete( script );
-            if( list.getSize() <= 0 ) {
+            if( list.isEmpty() ) {
                 delete this.m_objMsgList[msgId];
             }
         }
@@ -121,22 +121,22 @@ let EventBase = cc.Class({
 
     /**
      * 发送 消息事件（提供给子类重写函数，无需实现）
-     * @param msgNode
+     * @param msg
      */
-    sendMsg( msgNode ) {
+    sendMsg( msg ) {
 
     },
 
     /**
      * 接收 消息事件 回调
-     * @param msgNode {object} MsgBase 消息节点
+     * @param msg {object} MsgBase 消息节点
      */
-    onMessageEvent( msgNode ) {
-        let list = this.m_objMsgList[msgNode.getId()];
+    onMessageEvent( msg ) {
+        let list = this.m_objMsgList[msg.getId()];
         if( !Utils.isNull( list ) ) {
             list.forEach( function( node ) {
                 let data = node.getData();
-                data.onMessageEvent( msgNode );
+                data.onMessageEvent( msg );
             } );
         }
     },

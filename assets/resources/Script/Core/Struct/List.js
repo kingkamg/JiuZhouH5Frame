@@ -135,6 +135,13 @@ let List = cc.Class({
     },
 
     /**
+     * 是否空链表
+     */
+    isEmpty() {
+        return Utils.isNull( this.m_node );
+    },
+
+    /**
      * 插入 通过数据插入到前后链表
      * @param data 数据
      * @param about 前后（-1 前，1 后）默认后

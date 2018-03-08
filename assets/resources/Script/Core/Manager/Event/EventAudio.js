@@ -18,13 +18,13 @@ let EventAudio = cc.Class({
 
     /**
      * 发送 消息事件
-     * @param msgNode
+     * @param msg
      */
-    sendMsg( msgNode ) {
-        if( msgNode.getEventId() === DefMsg.EVENT_ID.AUDIO ) {
-            this.onMessageEvent( msgNode );
+    sendMsg( msg ) {
+        if( msg.getEventId() === DefMsg.EVENT.AUDIO ) {
+            this.onMessageEvent( msg );
         } else {
-            EventCenter.getInstance().sendMsg( msgNode );
+            EventCenter.getInstance().sendMsg( msg );
         }
     },
 

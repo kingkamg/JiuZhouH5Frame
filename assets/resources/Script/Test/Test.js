@@ -2,13 +2,13 @@
  * 测试
  */
 
-let ViewBase = require( "ViewBase" );
+let UIBase = require( "UIBase" );
 let DefMsg = require( "DefMsg" );
 let EventManager = require( "EventManager" );
 let Utils = require( "Utils" );
 
 cc.Class({
-    extends: ViewBase,
+    extends: UIBase,
 
     properties: {
         // foo: {
@@ -45,8 +45,8 @@ cc.Class({
      */
     initData() {
         this.msgIds = [
-            DefMsg.CUSTOM_ID.TEST_0,
-            DefMsg.CUSTOM_ID.TEST_1,
+            DefMsg.CUSTOM.TEST_0,
+            DefMsg.CUSTOM.TEST_1,
         ]
     },
 
@@ -83,15 +83,33 @@ cc.Class({
     },
 
     /**
-     * 消息事件
-     * @param msgNode
+     * 提取名字
+     * @param path
      */
-    onMessageEvent( msgNode ) {
-        switch( msgNode.getId() ) {
-            case DefMsg.CUSTOM_ID.TEST_0:
+    extractName( path ) {
+        let lastOffset = path.lastIndexOf( "/" );
+        return path.substr( lastOffset + 1, path.length );
+    },
+
+
+    /**
+     * 通用按钮
+     */
+    onCommon() {
+        let path = "/assets/resources/Script/Core/Define/Loginss";
+        cc.log( this.extractName( path ) );
+    },
+
+    /**
+     * 消息事件
+     * @param msg
+     */
+    onMessageEvent( msg ) {
+        switch( msg.getId() ) {
+            case DefMsg.CUSTOM.TEST_0:
                 cc.log( "TEST_0" );
                 break;
-            case DefMsg.CUSTOM_ID.TEST_1:
+            case DefMsg.CUSTOM.TEST_1:
                 cc.log( "TEST_1" );
                 break;
             default:

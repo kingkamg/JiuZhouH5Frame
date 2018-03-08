@@ -2,130 +2,135 @@
  * 视图基类
  */
 
-let Utils = require( "Utils" );
-let EventManager = require( "EventManager" );
+let DefView = require( "DefView" );
 
-cc.Class({
-    extends: cc.Component,
+let ViewBase = cc.Class({
 
-    properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+    /**
+     * 构造
+     */
+    ctor() {
+        // 路径
+        this.m_strPath = "";
+        // 数据
+        this.m_objData = null;
+        // 层级
+        this.m_nZOrder = DefView.ZORDER.UI;
+        // 预制对象
+        this.m_objPrefab = null;
+
+        // 初始化数据
+        this.initData( arguments[0], arguments[1], arguments[2] );
+        // 初始化视图
+        this.initView();
     },
 
     /**
-     * 组件脚本的初始化阶段，我们提供了 onLoad 回调函数。onLoad 回调会在组件首次激活时触发，比如所在的场景被载入，或者所
-     * 在节点被激活的情况下。在 onLoad 阶段，保证了你可以获取到场景中的其他节点，以及节点关联的资源数据。onLoad 总是会在
-     * 任何 start 方法调用前执行，这能用于安排脚本的初始化顺序。通常我们会在 onLoad 阶段去做一些初始化相关的操作。
-     */
-    // onLoad() {
-    //
-    // },
-
-    /**
-     * 回调函数会在组件第一次激活前，也就是第一次执行 update 之前触发。start 通常用于初始化一些中间状态的数据，这些数据
-     * 可能在 update 时会发生改变，并且被频繁的 enable 和 disable。
-     */
-    // start() {
-    //
-    // },
-
-    /**
-     * 游戏开发的一个关键点是在每一帧渲染前更新物体的行为，状态和方位。这些更新操作通常都放在 update 回调中。
-     */
-    // update( dt ) {
-    //
-    // },
-
-    /**
-     * 会在所有动画更新前执行，但如果我们要在动画更新之后才进行一些额外操作，或者希望在所有组件的 update 都执行完之后才
-     * 进行其它操作，那就需要用到 lateUpdate 回调。
-     */
-    // lateUpdate( dt ) {
-    //
-    // },
-
-    /**
-     * 当组件的 enabled 属性从 false 变为 true 时，或者所在节点的 active 属性从 false 变为 true 时，会激活 onEnable 回调
-     * 。倘若节点第一次被创建且 enabled 为 true，则会在 onLoad 之后，start 之前被调用。
-     */
-    // onEnable() {
-    //
-    // },
-
-    /**
-     * 当组件的 enabled 属性从 true 变为 false 时，或者所在节点的 active 属性从 true 变为 false 时，会激活 onDisable 回
-     * 调。
-     */
-    // onDisable() {
-    //
-    // },
-
-    /**
-     * 当组件或者所在节点调用了 destroy()，则会调用 onDestroy 回调，并在当帧结束时统一回收组件。
-     */
-    // onDestroy() {
-    //
-    // },
-
-    /**
      * 初始化数据
+     * @param path
+     * @param data
+     * @param zorder
      */
-    initData() {
-
+    initData( path, data, zorder ) {
+        if( !Utils.isNull( path ) ) {
+            this.m_strPath = path;
+        }
+        if( !Utils.isNull( data ) ) {
+            this.m_objData = data;
+        }
+        if( !Utils.isNull( zorder ) ) {
+            this.m_nZOrder = zorder;
+        }
     },
 
     /**
      * 初始化视图
      */
     initView() {
-
+        // 预制实例化
+        this.load();
     },
 
     /**
-     * 注册
+     * 加载预制
      */
-    register(){
-
+    load() {
+        cc.loader.loadRes( this.m_strPath, function( prefab ) {
+            this.m_objPrefab = cc.instantiate( prefab );
+        }.bind( this ) );
     },
 
     /**
-     * 注册事件
-     * @param script
-     * @param msgIds
+     * 卸载预制
      */
-    registerEvent( script, msgIds ) {
-        EventManager.getInstance().getEventView().register( script, msgIds );
+    unload() {
+        cc.loader.releaseRes( this.m_strPath );
     },
 
     /**
-     * 卸载事件
-     * @param script
-     * @param msgIds
+     * 设置路径
+     * @param path
      */
-    unRegisterEvent( script, msgIds ) {
-        EventManager.getInstance().getEventView().unRegister( script, msgIds );
+    setPath( path ) {
+        this.m_strPath = path;
     },
 
     /**
-     * 发送事件
-     * @param msgNode
+     * 获取路径
+     * @returns {string|*}
      */
-    sendEvent( msgNode ) {
-        EventManager.getInstance().getEventView().sendMsg( msgNode );
+    getPath(){
+        return this.m_strPath;
+    },
+
+    /**
+     * 设置数据
+     * @param data
+     */
+    setData( data ) {
+        this.m_objData = path;
+    },
+
+    /**
+     * 获取数据
+     * @returns {object|*}
+     */
+    getData(){
+        return this.m_objData;
+    },
+
+    /**
+     * 设置层级
+     * @param zorder
+     */
+    setZOrder( zorder ) {
+        this.m_nZOrder = zorder;
+    },
+
+    /**
+     * 获取层级
+     * @returns {number|*}
+     */
+    getZOrder(){
+        return this.m_nZOrder;
+    },
+
+    /**
+     * 设置预制对象
+     * @param prefab
+     */
+    sePrefab( prefab ) {
+        this.m_objPrefab = prefab;
+    },
+
+    /**
+     * 获取预制对象
+     * @returns {object|*}
+     */
+    getPrefab(){
+        return this.m_objPrefab;
     },
 
 });
+
+module.exports = ViewBase;

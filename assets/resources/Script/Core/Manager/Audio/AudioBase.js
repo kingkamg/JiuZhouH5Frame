@@ -24,10 +24,10 @@ let AudioBase = cc.Class({
         this.m_nState = DefAudio.STATE.INITIALZING;
 
         // 赋值
-        this.setData( arguments[0], arguments[1], arguments[2] );
+        this.initData( arguments[0], arguments[1], arguments[2] );
     },
 
-    setData( path, loop, volume ) {
+    initData( path, loop, volume ) {
         if( !Utils.isNull( path ) ) {
             this.m_strPath = path;
         }

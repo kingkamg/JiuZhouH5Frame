@@ -2,14 +2,14 @@
  * 按钮
  */
 
-let ViewBase = require( "ViewBase" );
+let UIBase = require( "UIBase" );
 let DefMsg = require( "DefMsg" );
-let MsgNode = require( "MsgNode" );
+let EventMsg = require( "EventMsg" );
 
 const SEND_COUNT = 1;
 
 cc.Class({
-    extends: ViewBase,
+    extends: UIBase,
 
     properties: {
         // foo: {
@@ -41,11 +41,11 @@ cc.Class({
      * 发送消息
      */
     onSendMsg() {
-        let msgNode = new MsgNode();
-        msgNode.setId( DefMsg.CUSTOM_ID.TEST_1 );
-        msgNode.setData( 999 );
+        let msg = new EventMsg();
+        msg.setId( DefMsg.CUSTOM.TEST_1 );
+        msg.setData( 999 );
         for( let i = 0; i < SEND_COUNT; ++i ) {
-            this.sendEvent( msgNode );
+            this.sendEvent( msg );
         }
     },
 
