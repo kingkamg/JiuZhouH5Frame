@@ -3,6 +3,7 @@
  * @type {Function}
  */
 
+let Utils = require( "Utils" );
 let DefLog = require( "DefLog" );
 
 let Log = {
@@ -36,7 +37,7 @@ let Log = {
 
                 break;
         }
-        return text;
+        return " [" + text + "]";
     },
 
     /**
@@ -47,7 +48,7 @@ let Log = {
         if( !Utils.isNull( type ) ) {
             suffix = this.getText( type );
         }
-        cc.error( text + "[" + suffix + "]" );
+        cc.error( text + suffix );
     },
 
     /**
@@ -58,7 +59,7 @@ let Log = {
         if( !Utils.isNull( type ) ) {
             suffix = this.getText( type );
         }
-        cc.warn( text + "[" + suffix + "]" );
+        cc.warn( text + suffix );
     },
 
     /**
@@ -69,7 +70,7 @@ let Log = {
         if( !Utils.isNull( type ) ) {
             suffix = this.getText( type );
         }
-        cc.log( text + "[" + suffix + "]" );
+        cc.log( text + suffix );
     },
 
 };

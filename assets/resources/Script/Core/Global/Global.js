@@ -1,41 +1,19 @@
-// Learn cc.Class:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/class.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/class/index.html
-// Learn Attribute:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/reference/attributes.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/reference/attributes/index.html
-// Learn life-cycle callbacks:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
+/**
+ * 全局 对象
+ */
 
-cc.Class({
-    extends: cc.Component,
+let AudioManager = require( "AudioManager" );
+let EventManager = require( "EventManager" );
+let ViewManager = require( "ViewManager" );
 
-    properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
-    },
+let Global = {
+    // 声音管理器
+    AudioManager: AudioManager.getInstance(),
+    // 事件管理器
+    EventManager: EventManager.getInstance(),
+    // 视图管理器
+    ViewManager: ViewManager.getInstance(),
 
-    // LIFE-CYCLE CALLBACKS:
+};
 
-    // onLoad () {},
-
-    start () {
-
-    },
-
-    // update (dt) {},
-});
+module.exports = Global;

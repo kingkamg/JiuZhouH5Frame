@@ -4,7 +4,9 @@
 let List = require( "List" );
 let Log = require( "Log" );
 let ViewBase = require( "ViewBase" );
+let DefView = require( "DefView" );
 let DefLog = require( "DefLog" );
+let Utils = require( "Utils" );
 
 // 实例化对象
 let instance = null;
@@ -32,10 +34,17 @@ let ViewManager = cc.Class({
      * 构造
      */
     ctor() {
-        // 视图链表
+
+        // 当前场景
+        this.m_objScene = null;
+        // 当前UI
+        this.m_objUI = null;
+
+        //（维护视图 我使用了两个结构 map用来快速查找 list用来方便视图的打开先后顺序）
+        // 视图 字典映射
+        this.m_mapView = new Map();
+        // 视图 链表
         this.m_listView = new List();
-        // 视图字典列表
-        this.m_dictViews = {};
 
     },
 
@@ -46,58 +55,82 @@ let ViewManager = cc.Class({
      * @param zorder {number} 层级
      */
     openUI( pathName, data, zorder ){
-        let prefabName = this.extractName( pathName );
-        let viewObject = this.getViewDict( prefabName );
+        let viewObject = this.m_mapView.get( pathName );
         if( Utils.isNull( viewObject ) ) {
-            let path = DefView.PREFAB_PATH + pathName;
-            viewObject = new ViewBase( path, data, zorder );
-            this.setViewDict( prefabName, viewObject );
+            viewObject = new ViewBase( DefView.UI_PATH + pathName, data, zorder );
+
+            this.m_mapView.set( pathName, viewObject );
+            this.m_listView.insert( viewObject );
         } else {
             viewObject.updateView( data );
         }
+
+        cc.loader.loadRes();
     },
 
     /**
      * 关闭UI
-     * @param name {string} 预制名（prefab后的 路径+预制名）
+     * @param pathName {string} 预制名（prefab后的 路径+预制名）
      */
-    closeUI( name ){
-
-
-        this.setViewFlag( name, false );
-    },
-
-    openScene(){
+    closeUI( pathName ){
 
     },
 
     /**
-     * 设置视图标记
-     * @param key 视图名
-     * @param value 数据
+     * 打开场景
+     * @param name
      */
-    setViewDict( key, value ) {
-        this.m_dictViews[key] = value;
+    openScene( name ){
+        // TODO 如果没有释放之前场景的节点
+        // 系统能自动释放，就不管
+        // 系统不能自动释放，就要手动调用removeAllChildren
+
+        cc.director.loadScene( name, function( _, scene ) {
+            // Log.print( "[" + scene.getName() + "] " + DefLog.CODER.CODER_10 );
+            let canvas = scene.getChildByName( "Canvas" );
+            let designResolution = canvas.getComponent( cc.Canvas ).designResolution;
+            let i = 0;
+            for( let key in DefView.ZORDER ) {
+                let node = new cc.Node();
+                node.setName( key );
+                node.setContentSize( designResolution.width, designResolution.height );
+                node.setPosition( i*100, i*100 );
+                node.setLocalZOrder( DefView.ZORDER[key] );
+                node.setColor( new cc.Color( i*30, i*30, 255 ) );
+                let bg = node.addComponent( cc.Sprite );
+                bg.node.spriteFrame = "res/raw-internal/image/default_panel.png";
+                canvas.addChild( node );
+                ++i;
+            }
+            this.m_objScene = scene;
+        }.bind( this ) );
     },
 
     /**
-     * 获取视图标记
-     * @param key 视图名
-     * @returns {*}
+     * 查找UI
      */
-    getViewDict( key ) {
-        return this.m_dictViews[key];
+    findUI( pathName ) {
+        let ui = this.m_mapView.get( pathName );
+        if( !Utils.isNull( ui ) ) {
+            ui = ui.getPrefab();
+        }
+        return ui;
     },
 
     /**
-     * 提取名字
-     * @param path
+     * 获取当前场景
+     * @returns {object|null}
      */
-    extractName( path ) {
-        let name = "";
-        let lastOffset = path.lastIndexOf( "/" );
-        name = path.substr( lastOffset + 1, path.length );
-        return name;
+    getScene() {
+        return this.m_objScene;
+    },
+
+    /**
+     * 获取当前UI
+     * @returns {object|null}
+     */
+    getUI() {
+        return this.m_objUI;
     },
 
 });

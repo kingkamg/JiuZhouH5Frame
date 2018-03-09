@@ -17,10 +17,32 @@ const ZORDER = {
 /**
  * 预制路径
  */
-const PREFAB_PATH = "resources/Prefab/";
+const UI_PATH = "resources/Prefab/";
+
+/**
+ * 场景路径
+ */
+const SCENE_PATH = "resources/Scene/";
+
+/**
+ * 场景
+ */
+const SCENE = {
+    Loading: "Loading",
+    Login: "Login",
+};
+
+/**
+ * UI
+ */
+const UI = {
+    Loading: "Loading"
+};
 
 module.exports = {
     SPAN: SPAN,
     ZORDER: ZORDER,
-    PREFAB_PATH: PREFAB_PATH,
+    UI_PATH: UI_PATH,
+    SCENE: SCENE,
+    UI: UI,
 };

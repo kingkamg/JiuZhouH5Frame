@@ -81,27 +81,6 @@ cc.Class({
     // },
 
     /**
-     * 初始化数据
-     */
-    initData() {
-
-    },
-
-    /**
-     * 初始化视图
-     */
-    initView() {
-
-    },
-
-    /**
-     * 注册
-     */
-    register(){
-
-    },
-
-    /**
      * 注册事件
      * @param script
      * @param msgIds

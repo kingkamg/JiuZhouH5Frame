@@ -55,7 +55,7 @@ let ViewBase = cc.Class({
      * 加载预制
      */
     load() {
-        cc.loader.loadRes( this.m_strPath, function( prefab ) {
+        cc.loader.loadRes( cc.url.raw( this.m_strPath ), function( prefab ) {
             this.m_objPrefab = cc.instantiate( prefab );
         }.bind( this ) );
     },
@@ -129,6 +129,17 @@ let ViewBase = cc.Class({
      */
     getPrefab(){
         return this.m_objPrefab;
+    },
+
+    /**
+     * 获取预制名
+     * @param path
+     */
+    getName() {
+        let name = "";
+        let lastOffset = this.m_strPath.lastIndexOf( "/" );
+        name = path.substr( lastOffset + 1, this.m_strPath.length );
+        return name;
     },
 
 });
