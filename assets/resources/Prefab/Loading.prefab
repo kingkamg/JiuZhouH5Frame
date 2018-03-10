@@ -627,7 +627,7 @@
       "__id__": 1
     },
     "component": "Loading",
-    "handler": "onCloseUI",
+    "handler": "onClose",
     "customEventData": ""
   },
   {

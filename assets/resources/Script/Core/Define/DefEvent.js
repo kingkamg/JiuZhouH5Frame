@@ -19,9 +19,15 @@ const EVENT = {
  */
 const CUSTOM = {
     // VIEW
-    TEST_0: EVENT.VIEW+0,
-    TEST_1: EVENT.VIEW+1,
-    TEST_2: EVENT.VIEW+2,
+    VIEW_0: EVENT.VIEW + 0,
+    VIEW_1: EVENT.VIEW + 1,
+    VIEW_2: EVENT.VIEW + 2,
+
+    // NET
+    NET_0: EVENT.NET + 0,
+
+    // AUDIO
+    AUDIO_0: EVENT.AUDIO + 0,
 };
 
 module.exports = {

@@ -25,6 +25,16 @@ let EventManager = cc.Class({
             }
             return instance;
         },
+
+        /**
+         * 销毁实例
+         */
+        destroy() {
+            if( !Utils.isNull( instance ) ){
+                instance.destroy();
+            }
+        },
+
     },
 
     /**
@@ -36,6 +46,16 @@ let EventManager = cc.Class({
         // 网络事件对象
         this.m_objEventNet = new EventNet();
 
+    },
+
+    /**
+     * 销毁
+     */
+    destroy() {
+        this.m_objEventView.destroy();
+        this.m_objEventView = null;
+        this.m_objEventNet.destroy();
+        this.m_objEventNet = null;
     },
 
     /**

@@ -60,10 +60,10 @@ cc.Class({
     /**
      * 关闭视图
      */
-    onCloseUI() {
+    onClose() {
         let data = "您好";
-        this.sendEvent( DefEvent.CUSTOM.TEST_0, data );
-        G.ViewManager.closeUI( DefView.UI.Loading );
+        this.sendEvent( DefEvent.CUSTOM.VIEW_0, data );
+        G.ViewManager.closePrefab( DefView.PREFAB.Loading );
     },
 
     /**
@@ -71,14 +71,14 @@ cc.Class({
      */
     onOpenYellow() {
         let data = ++this.m_nYeloowCount;
-        G.ViewManager.openUI( DefView.UI.Yellow, data );
+        G.ViewManager.openPrefab( DefView.PREFAB.Yellow, data );
     },
 
     /**
      * 刷新视图
      * @param data
      */
-    updateUI( data ) {
+    refresh( data ) {
         this.label_text.string = data.count;
     },
 

@@ -42,7 +42,7 @@ cc.Class({
      */
     onSendMsg() {
         let msg = new EventMsg();
-        msg.setId( DefEvent.CUSTOM.TEST_1 );
+        msg.setId( DefEvent.CUSTOM.VIEW_1 );
         msg.setData( 999 );
         for( let i = 0; i < SEND_COUNT; ++i ) {
             this.sendEvent( msg );

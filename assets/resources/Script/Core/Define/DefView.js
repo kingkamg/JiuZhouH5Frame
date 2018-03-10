@@ -17,7 +17,7 @@ const ZORDER = {
 /**
  * 预制路径
  */
-const UI_PATH = "Prefab/";
+const PREFAB_PATH = "Prefab/";
 
 /**
  * 场景路径
@@ -33,9 +33,9 @@ const SCENE = {
 };
 
 /**
- * UI
+ * PREFAB
  */
-const UI = {
+const PREFAB = {
     Loading: "Loading",
     Yellow: "Yellow",
 };
@@ -43,7 +43,8 @@ const UI = {
 module.exports = {
     SPAN: SPAN,
     ZORDER: ZORDER,
-    UI_PATH: UI_PATH,
+    PREFAB_PATH: PREFAB_PATH,
+    SCENE_PATH: SCENE_PATH,
     SCENE: SCENE,
-    UI: UI,
+    PREFAB: PREFAB,
 };

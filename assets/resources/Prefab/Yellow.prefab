@@ -696,7 +696,7 @@
       "__id__": 1
     },
     "component": "Yellow",
-    "handler": "onCloseUI",
+    "handler": "onClose",
     "customEventData": ""
   },
   {

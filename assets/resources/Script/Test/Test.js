@@ -7,6 +7,7 @@ let DefEvent = require( "DefEvent" );
 let EventManager = require( "EventManager" );
 let Utils = require( "Utils" );
 let DefView = require( "DefView" );
+let Log = require( "Log" );
 
 cc.Class({
     extends: UIBase,
@@ -36,9 +37,7 @@ cc.Class({
     },
 
     onDestroy() {
-        if( !Utils.isNull( this.eventIds ) && this.eventIds.length > 0 ) {
-            this.unRegisterEvent( this, this.eventIds );
-        }
+        this.unRegisterEvent( this, this.eventIds );
     },
 
     /**
@@ -46,8 +45,8 @@ cc.Class({
      */
     initData() {
         this.eventIds = [
-            DefEvent.CUSTOM.TEST_0,
-            DefEvent.CUSTOM.TEST_1,
+            DefEvent.CUSTOM.VIEW_0,
+            DefEvent.CUSTOM.VIEW_1,
         ]
     },
 
@@ -62,9 +61,15 @@ cc.Class({
      * 注册
      */
     register() {
-        if( !Utils.isNull( this.eventIds ) && this.eventIds.length > 0 ) {
-            this.registerEvent( this, this.eventIds );
-        }
+        this.registerEvent( this, this.eventIds );
+    },
+
+    /**
+     * 刷新视图
+     * @param data
+     */
+    refresh( data ) {
+
     },
 
     /**
@@ -107,7 +112,7 @@ cc.Class({
     onLogin() {
         let data = {};
         data.count = 55;
-        G.ViewManager.openUI( DefView.UI.Loading, data );
+        G.ViewManager.openPrefab( DefView.PREFAB.Loading, data );
     },
 
     /**
@@ -116,11 +121,11 @@ cc.Class({
      */
     onEvent( event ) {
         switch( event.getId() ) {
-            case DefEvent.CUSTOM.TEST_0:
-                cc.log( "TEST_0" );
+            case DefEvent.CUSTOM.VIEW_0:
+                cc.log( "VIEW_0" );
                 break;
-            case DefEvent.CUSTOM.TEST_1:
-                cc.log( "TEST_1" );
+            case DefEvent.CUSTOM.VIEW_1:
+                cc.log( "VIEW_1" );
                 break;
             default:
 

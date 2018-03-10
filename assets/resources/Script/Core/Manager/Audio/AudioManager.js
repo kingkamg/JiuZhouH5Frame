@@ -27,6 +27,16 @@ let AudioManager = cc.Class({
             }
             return instance;
         },
+
+        /**
+         * 销毁实例
+         */
+        destroy() {
+            if( !Utils.isNull( instance ) ){
+                instance.destroy();
+            }
+        },
+
     },
 
     /**
@@ -37,8 +47,13 @@ let AudioManager = cc.Class({
         this.m_objMusic = null;
         // 音效ID 列表 { array object }
         this.m_arrSound = [];
-        // // 语音ID 列表 { array object }
-        // this.m_arrVoice = [];
+
+    },
+
+    /**
+     * 销毁
+     */
+    destroy() {
 
     },
 

@@ -17,6 +17,13 @@ let EventNet = cc.Class({
     },
 
     /**
+     * 销毁
+     */
+    destroy() {
+        this._super();
+    },
+
+    /**
      * 发送 消息事件
      * @param event
      */

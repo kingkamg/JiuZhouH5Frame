@@ -17,6 +17,13 @@ let EventBase = cc.Class({
     },
 
     /**
+     * 销毁
+     */
+    destroy() {
+        this._super();
+    },
+    
+    /**
      * 内部函数 注册事件_1
      * @param script
      * @param eventId

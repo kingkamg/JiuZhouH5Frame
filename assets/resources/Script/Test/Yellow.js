@@ -61,7 +61,7 @@ cc.Class({
         // 打开自己次数
         this.m_nSelfCount = 0;
         // 注册消息ID集合
-        this.m_arrEventId = [DefEvent.CUSTOM.TEST_0, DefEvent.CUSTOM.TEST_1];
+        this.m_arrEventId = [DefEvent.CUSTOM.VIEW_0, DefEvent.CUSTOM.VIEW_1];
     },
 
     /**
@@ -81,8 +81,8 @@ cc.Class({
     /**
      * 关闭视图
      */
-    onCloseUI() {
-        G.ViewManager.closeUI( DefView.UI.Yellow );
+    onClose() {
+        G.ViewManager.closePrefab( DefView.PREFAB.Yellow );
     },
 
     /**
@@ -91,14 +91,14 @@ cc.Class({
     onOpenBlack() {
         let data = {};
         data.count = ++this.m_nBlackCount;
-        G.ViewManager.openUI( DefView.UI.Loading, data );
+        G.ViewManager.openPrefab( DefView.PREFAB.Loading, data );
     },
 
     /**
      * 刷新视图
      * @param data
      */
-    updateUI( data ) {
+    refresh( data ) {
         this.label_text.string = data;
     },
 
@@ -109,13 +109,13 @@ cc.Class({
     onEvent( event ) {
         let data = event.getData();
         switch( event.getId() ) {
-            case DefEvent.CUSTOM.TEST_0:
+            case DefEvent.CUSTOM.VIEW_0:
                 Log.print( data );
                 break;
-            case DefEvent.CUSTOM.TEST_1:
+            case DefEvent.CUSTOM.VIEW_1:
                 Log.print( data );
                 break;
-            case DefEvent.CUSTOM.TEST_2:
+            case DefEvent.CUSTOM.VIEW_2:
                 Log.print( data );
                 break;
             default:
