@@ -4,7 +4,7 @@
 
 let EventBase = require( "EventBase" );
 let EventCenter = require( "EventCenter" );
-let DefMsg = require( "DefMsg" );
+let DefEvent = require( "DefEvent" );
 
 let EventAudio = cc.Class({
     extends: EventBase,
@@ -21,7 +21,7 @@ let EventAudio = cc.Class({
      * @param msg
      */
     sendMsg( msg ) {
-        if( msg.getEventId() === DefMsg.EVENT.AUDIO ) {
+        if( msg.getEventId() === DefEvent.EVENT.AUDIO ) {
             this.onMessageEvent( msg );
         } else {
             EventCenter.getInstance().sendMsg( msg );

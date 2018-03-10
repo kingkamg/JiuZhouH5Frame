@@ -2,7 +2,7 @@
  * 消息节点
  */
 
-let DefMsg = require( "DefMsg" );
+let DefEvent = require( "DefEvent" );
 
 let EventMsg = cc.Class({
 
@@ -24,8 +24,8 @@ let EventMsg = cc.Class({
      * @returns {number}
      */
     getEventId() {
-        let eventId = Math.floor( this.m_nId / DefMsg.SPAN );
-        return eventId * DefMsg.SPAN;
+        let eventId = Math.floor( this.m_nId / DefEvent.SPAN );
+        return eventId * DefEvent.SPAN;
     },
 
     /**

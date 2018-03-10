@@ -2,7 +2,7 @@
  * 事件处理中心
  * @type {Function}
  */
-let DefMsg = require( "DefMsg" );
+let DefEvent = require( "DefEvent" );
 let EventManager = require( "EventManager" );
 
 // 实例化对象
@@ -41,10 +41,10 @@ let EventCenter = cc.Class({
     sendMsg( msg ) {
         let eventId = msg.getEventId();
         switch( eventId ) {
-            case DefMsg.EVENT.VIEW:
+            case DefEvent.EVENT.VIEW:
                 EventManager.getEventView().sendMsg( msg );
                 break;
-            case DefMsg.EVENT.NET:
+            case DefEvent.EVENT.NET:
                 EventManager.getEventNet().sendMsg( msg );
                 break;
             default:
