@@ -55,17 +55,23 @@ let ViewManager = cc.Class({
      * @param zorder {number} 层级
      */
     openUI( pathName, data, zorder ){
+        zorder = Utils.isNull( zorder ) ? DefView.ZORDER.UI : zorder;
         let viewObject = this.m_mapView.get( pathName );
         if( Utils.isNull( viewObject ) ) {
             viewObject = new ViewBase( DefView.UI_PATH + pathName, data, zorder );
-
+            viewObject.load( function( node ) {
+                let zorderName = Utils.getKeyByValue( DefView.ZORDER, zorder );
+                let zorderNode = this.m_objScene.getChildByName( "Canvas" ).getChildByName( zorderName );
+                zorderNode.addChild( node, zorder );
+            }.bind( this ) );
             this.m_mapView.set( pathName, viewObject );
             this.m_listView.insert( viewObject );
         } else {
-            viewObject.updateView( data );
+            viewObject.setData( data );
+            viewObject.setZOrder( zorder );
+            viewObject.updateView();
         }
 
-        cc.loader.loadRes();
     },
 
     /**
@@ -73,7 +79,12 @@ let ViewManager = cc.Class({
      * @param pathName {string} 预制名（prefab后的 路径+预制名）
      */
     closeUI( pathName ){
-
+        let viewObject = this.m_mapView.get( pathName );
+        if( !Utils.isNull( viewObject ) ) {
+            this.m_mapView.delete( pathName );
+            this.m_listView.delete( viewObject );
+            viewObject.destroy();
+        }
     },
 
     /**
@@ -106,7 +117,7 @@ let ViewManager = cc.Class({
     findUI( pathName ) {
         let ui = this.m_mapView.get( pathName );
         if( !Utils.isNull( ui ) ) {
-            ui = ui.getPrefab();
+            ui = ui.getRootNode();
         }
         return ui;
     },

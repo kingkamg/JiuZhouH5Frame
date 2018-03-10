@@ -3,6 +3,7 @@
  */
 
 let DefView = require( "DefView" );
+let Utils = require( "Utils" );
 
 let ViewBase = cc.Class({
 
@@ -16,8 +17,8 @@ let ViewBase = cc.Class({
         this.m_objData = null;
         // 层级
         this.m_nZOrder = DefView.ZORDER.UI;
-        // 预制对象
-        this.m_objPrefab = null;
+        // 根节点
+        this.m_objRootNode = null;
 
         // 初始化数据
         this.initData( arguments[0], arguments[1], arguments[2] );
@@ -29,7 +30,7 @@ let ViewBase = cc.Class({
      * 初始化数据
      * @param path
      * @param data
-     * @param zorder
+     * @param zorder {*|number} [] 传入的层级
      */
     initData( path, data, zorder ) {
         if( !Utils.isNull( path ) ) {
@@ -47,16 +48,16 @@ let ViewBase = cc.Class({
      * 初始化视图
      */
     initView() {
-        // 预制实例化
-        this.load();
+
     },
 
     /**
      * 加载预制
      */
-    load() {
-        cc.loader.loadRes( cc.url.raw( this.m_strPath ), function( prefab ) {
-            this.m_objPrefab = cc.instantiate( prefab );
+    load( callback ) {
+        cc.loader.loadRes( this.m_strPath, function( _, prefab ) {
+            this.m_objRootNode = cc.instantiate( prefab );
+            callback( this.m_objRootNode );
         }.bind( this ) );
     },
 
@@ -65,6 +66,28 @@ let ViewBase = cc.Class({
      */
     unload() {
         cc.loader.releaseRes( this.m_strPath );
+    },
+
+    /**
+     * 销毁节点
+     */
+    destroy() {
+        this.m_strPath = null;
+        this.m_objData = null;
+        this.m_nZOrder = null;
+        this.m_objRootNode.destroy();
+        this.unload();
+    },
+
+    /**
+     * 更新视图
+     * @param data
+     */
+    updateView() {
+        let script = this.m_objRootNode.getComponent( this.getName() );
+        if( Utils.isNull( script ) ) {
+            script.updateUI( this.m_objData );
+        }
     },
 
     /**
@@ -88,7 +111,7 @@ let ViewBase = cc.Class({
      * @param data
      */
     setData( data ) {
-        this.m_objData = path;
+        this.m_objData = data;
     },
 
     /**
@@ -101,7 +124,7 @@ let ViewBase = cc.Class({
 
     /**
      * 设置层级
-     * @param zorder
+     * @param zorder {number} 层级
      */
     setZOrder( zorder ) {
         this.m_nZOrder = zorder;
@@ -117,28 +140,27 @@ let ViewBase = cc.Class({
 
     /**
      * 设置预制对象
-     * @param prefab
+     * @param node
      */
-    sePrefab( prefab ) {
-        this.m_objPrefab = prefab;
+    setRootNode( node ) {
+        this.m_objRootNode = node;
     },
 
     /**
      * 获取预制对象
      * @returns {object|*}
      */
-    getPrefab(){
-        return this.m_objPrefab;
+    getRootNode(){
+        return this.m_objRootNode;
     },
 
     /**
      * 获取预制名
-     * @param path
      */
     getName() {
         let name = "";
         let lastOffset = this.m_strPath.lastIndexOf( "/" );
-        name = path.substr( lastOffset + 1, this.m_strPath.length );
+        name = this.m_strPath.substr( lastOffset + 1, this.m_strPath.length );
         return name;
     },
 

@@ -87,6 +87,23 @@ let Utils = {
         return flag;
     },
 
+    /**
+     * 获取key 通过value
+     * @param object
+     * @param value
+     * @returns {*}
+     */
+    getKeyByValue( object, value ) {
+        let key = null;
+        for( let k in object ){
+            if( object[k] === value ) {
+                key = k;
+                break;
+            }
+        }
+        return key;
+    },
+
 };
 
 module.exports = Utils;

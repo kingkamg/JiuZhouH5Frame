@@ -81,6 +81,13 @@ cc.Class({
     // },
 
     /**
+     * 更新UI（子类需要重写）
+     */
+    updateUI( data ) {
+
+    },
+
+    /**
      * 注册事件
      * @param script
      * @param msgIds

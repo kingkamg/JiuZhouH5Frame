@@ -3,9 +3,10 @@
  */
 
 let UIBase = require( "UIBase" );
-let DefMsg = require( "DefMsg" );
+let DefEvent = require( "DefEvent" );
 let EventManager = require( "EventManager" );
 let Utils = require( "Utils" );
+let DefView = require( "DefView" );
 
 cc.Class({
     extends: UIBase,
@@ -45,8 +46,8 @@ cc.Class({
      */
     initData() {
         this.msgIds = [
-            DefMsg.CUSTOM.TEST_0,
-            DefMsg.CUSTOM.TEST_1,
+            DefEvent.CUSTOM.TEST_0,
+            DefEvent.CUSTOM.TEST_1,
         ]
     },
 
@@ -96,8 +97,15 @@ cc.Class({
      * 通用按钮
      */
     onCommon() {
-        let path = "/assets/resources/Script/Core/Define/Loginss";
+        let path = "/assets/resources/Script/Core/Define/Login";
         cc.log( this.extractName( path ) );
+    },
+
+    /**
+     * 登录
+     */
+    onLogin() {
+        G.ViewManager.openUI( DefView.UI.Loading );
     },
 
     /**
@@ -106,10 +114,10 @@ cc.Class({
      */
     onMessageEvent( msg ) {
         switch( msg.getId() ) {
-            case DefMsg.CUSTOM.TEST_0:
+            case DefEvent.CUSTOM.TEST_0:
                 cc.log( "TEST_0" );
                 break;
-            case DefMsg.CUSTOM.TEST_1:
+            case DefEvent.CUSTOM.TEST_1:
                 cc.log( "TEST_1" );
                 break;
             default:

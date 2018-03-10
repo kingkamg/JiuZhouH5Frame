@@ -1,12 +1,15 @@
-/**
- * 按钮
- */
+// Learn cc.Class:
+//  - [Chinese] http://www.cocos.com/docs/creator/scripting/class.html
+//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/class/index.html
+// Learn Attribute:
+//  - [Chinese] http://www.cocos.com/docs/creator/scripting/reference/attributes.html
+//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/reference/attributes/index.html
+// Learn life-cycle callbacks:
+//  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
+//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
 
 let UIBase = require( "UIBase" );
-let DefEvent = require( "DefEvent" );
-let EventMsg = require( "EventMsg" );
-
-const SEND_COUNT = 1;
+let DefView = require( "DefView" );
 
 cc.Class({
     extends: UIBase,
@@ -38,15 +41,10 @@ cc.Class({
     },
 
     /**
-     * 发送消息
+     * 关闭视图
      */
-    onSendMsg() {
-        let msg = new EventMsg();
-        msg.setId( DefEvent.CUSTOM.TEST_1 );
-        msg.setData( 999 );
-        for( let i = 0; i < SEND_COUNT; ++i ) {
-            this.sendEvent( msg );
-        }
+    onCloseUI() {
+        G.ViewManager.closeUI( DefView.UI.Loading );
     },
 
     // update (dt) {},

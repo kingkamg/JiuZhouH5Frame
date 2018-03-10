@@ -17,12 +17,12 @@ const ZORDER = {
 /**
  * 预制路径
  */
-const UI_PATH = "resources/Prefab/";
+const UI_PATH = "Prefab/";
 
 /**
  * 场景路径
  */
-const SCENE_PATH = "resources/Scene/";
+const SCENE_PATH = "Scene/";
 
 /**
  * 场景
