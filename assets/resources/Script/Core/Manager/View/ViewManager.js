@@ -86,21 +86,15 @@ let ViewManager = cc.Class({
         // 系统不能自动释放，就要手动调用removeAllChildren
 
         cc.director.loadScene( name, function( _, scene ) {
-            // Log.print( "[" + scene.getName() + "] " + DefLog.CODER.CODER_10 );
+            Log.print( "[" + scene.getName() + "] " + DefLog.CODER.CODER_10 );
             let canvas = scene.getChildByName( "Canvas" );
             let designResolution = canvas.getComponent( cc.Canvas ).designResolution;
-            let i = 0;
             for( let key in DefView.ZORDER ) {
                 let node = new cc.Node();
                 node.setName( key );
                 node.setContentSize( designResolution.width, designResolution.height );
-                node.setPosition( i*100, i*100 );
-                node.setLocalZOrder( DefView.ZORDER[key] );
-                node.setColor( new cc.Color( i*30, i*30, 255 ) );
-                let bg = node.addComponent( cc.Sprite );
-                bg.node.spriteFrame = "res/raw-internal/image/default_panel.png";
-                canvas.addChild( node );
-                ++i;
+                node.setPosition( 0, 0 );
+                canvas.addChild( node, DefView.ZORDER[key] );
             }
             this.m_objScene = scene;
         }.bind( this ) );

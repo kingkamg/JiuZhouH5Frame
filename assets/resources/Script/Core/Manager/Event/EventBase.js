@@ -129,7 +129,7 @@ let EventBase = cc.Class({
 
     /**
      * 接收 消息事件 回调
-     * @param msg {object} MsgBase 消息节点
+     * @param msg {object} EventMsg 消息节点
      */
     onMessageEvent( msg ) {
         let list = this.m_objMsgList[msg.getId()];
