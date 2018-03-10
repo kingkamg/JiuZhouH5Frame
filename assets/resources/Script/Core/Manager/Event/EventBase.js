@@ -12,7 +12,7 @@ let EventBase = cc.Class({
      */
     ctor() {
         // 存储消息结构 事件列表
-        this.m_objEventList = {};
+        this.m_mapEventList = new Map();
 
     },
 
@@ -20,9 +20,10 @@ let EventBase = cc.Class({
      * 销毁
      */
     destroy() {
-        this._super();
+        this.m_mapEventList.clear();
+        this.m_mapEventList = null;
     },
-    
+
     /**
      * 内部函数 注册事件_1
      * @param script
@@ -30,10 +31,10 @@ let EventBase = cc.Class({
      * @private
      */
     _register1( script, eventId ) {
-        if( Utils.isNull( this.m_objEventList[eventId] ) ) {
-            this.m_objEventList[eventId] = new List();
+        if( Utils.isNull( this.m_mapEventList.get( eventId ) ) ) {
+            this.m_mapEventList.set( eventId, new List() );
         }
-        let list = this.m_objEventList[eventId];
+        let list = this.m_mapEventList.get( eventId );
         list.insert( script );
     },
 
@@ -81,15 +82,15 @@ let EventBase = cc.Class({
      * @private
      */
     _unRegister1( script, eventId ) {
-        let list = this.m_objEventList[eventId];
+        let list = this.m_mapEventList.get( eventId );
         if( !Utils.isNull( list ) && !Utils.isNull( list.find( script ) ) ) {
             list.delete( script );
             if( list.isEmpty() ) {
-                delete this.m_objEventList[eventId];
+                this.m_mapEventList.delete( eventId );
             }
         }
     },
-    
+
     /**
      * 内部函数 删除注册事件_2
      * @param script
@@ -139,7 +140,7 @@ let EventBase = cc.Class({
      * @param event {object} EventMsg 消息节点
      */
     onEvent( event ) {
-        let list = this.m_objEventList[event.getId()];
+        let list = this.m_mapEventList.get( event.getId() );
         if( !Utils.isNull( list ) ) {
             list.forEach( function( node ) {
                 let data = node.getData();

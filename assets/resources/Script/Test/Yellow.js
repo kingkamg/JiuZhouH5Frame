@@ -110,10 +110,10 @@ cc.Class({
         let data = event.getData();
         switch( event.getId() ) {
             case DefEvent.CUSTOM.VIEW_0:
-                Log.print( data );
+
                 break;
             case DefEvent.CUSTOM.VIEW_1:
-                Log.print( data );
+
                 break;
             case DefEvent.CUSTOM.VIEW_2:
                 Log.print( data );

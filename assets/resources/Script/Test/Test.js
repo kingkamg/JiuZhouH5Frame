@@ -122,10 +122,10 @@ cc.Class({
     onEvent( event ) {
         switch( event.getId() ) {
             case DefEvent.CUSTOM.VIEW_0:
-                cc.log( "VIEW_0" );
+
                 break;
             case DefEvent.CUSTOM.VIEW_1:
-                cc.log( "VIEW_1" );
+
                 break;
             default:
 

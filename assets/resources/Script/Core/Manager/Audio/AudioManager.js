@@ -46,7 +46,7 @@ let AudioManager = cc.Class({
         // 音乐ID 因为背景音乐唯一 { object }
         this.m_objMusic = null;
         // 音效ID 列表 { array object }
-        this.m_arrSound = [];
+        this.m_mapSound = new Map();
 
     },
 
@@ -54,7 +54,10 @@ let AudioManager = cc.Class({
      * 销毁
      */
     destroy() {
-
+        cc.audioEngine.stopAll();
+        this.m_objMusic = null;
+        this.m_mapSound.clear();
+        this.m_mapSound = null;
     },
 
     /**
@@ -83,7 +86,7 @@ let AudioManager = cc.Class({
         let audio = new AudioSound( path, volume );
         let id = audio.play();
         cc.audioEngine.setFinishCallback( id, this.onPlaySoundFinish.bind( this ) );
-        this.m_arrSound[id] = audio;
+        this.m_mapSound.set( id, audio );
     },
 
     /**
@@ -102,10 +105,10 @@ let AudioManager = cc.Class({
      * @param id
      */
     stopSound( id ) {
-        let audio = this.m_arrSound[id];
+        let audio = this.m_mapSound.get( id );
         if( !Utils.isNull( audio ) ) {
             audio.stop();
-            this.m_arrSound.splice(id, 1);
+            this.m_mapSound.splice(id, 1);
         }
     },
 
@@ -124,7 +127,7 @@ let AudioManager = cc.Class({
      * @param id
      */
     pauseSound( id ) {
-        let audio = this.m_arrSound[id];
+        let audio = this.m_mapSound.get( id );
         if( !Utils.isNull( audio ) ) {
             audio.pause();
         }
@@ -145,7 +148,7 @@ let AudioManager = cc.Class({
      * @param id
      */
     resumeSound( id ) {
-        let audio = this.m_arrSound[id];
+        let audio = this.m_mapSound.get( id );
         if( !Utils.isNull( audio ) ) {
             audio.resume();
         }
@@ -165,7 +168,7 @@ let AudioManager = cc.Class({
      */
     onPlaySoundFinish( event ) {
         let id = event.getCurrentTarget().instanceId;
-        this.m_arrSound.splice( id, 1 );
+        this.m_mapSound.delete( id );
     },
 
 });
