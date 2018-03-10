@@ -38,6 +38,10 @@ const SCENE = {
 const PREFAB = {
     Loading: "Loading",
     Yellow: "Yellow",
+    Demo: "Demo",
+    Audio: "Audio",
+    Event: "Event",
+    View: "View",
 };
 
 module.exports = {

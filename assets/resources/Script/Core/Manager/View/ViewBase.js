@@ -24,7 +24,7 @@ let ViewBase = cc.Class({
      */
     refresh() {
         let script = this.m_objNode.getComponent( this.getName() );
-        if( !Utils.isNull( script ) ) {
+        if( !Utils.isNull( script ) && !Utils.isNull( script.refresh ) ) {
             script.refresh( this.m_objData );
         }
     },

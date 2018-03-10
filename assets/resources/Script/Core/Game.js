@@ -76,13 +76,7 @@ let Game = cc.Class({
      * 运行
      */
     run() {
-        G.ViewManager.replaceScene( DefView.SCENE.Login, null, function( scene ) {
-            G.ViewManager.openPrefab( DefView.PREFAB.Loading, { count: 99 }, null, function( prefab ) {
-                G.ViewManager.openPrefab( DefView.PREFAB.Yellow, 88, null, function( prefab ) {
-
-                } );
-            } );
-        } );
+        G.ViewManager.replaceScene( DefView.SCENE.Login );
     },
 
 });

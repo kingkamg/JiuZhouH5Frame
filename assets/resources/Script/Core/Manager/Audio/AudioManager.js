@@ -90,6 +90,13 @@ let AudioManager = cc.Class({
     },
 
     /**
+     * 停止所有声音
+     */
+    stopAll() {
+        cc.audioEngine.stopAll();
+    },
+
+    /**
      * 停止音乐
      */
     stopMusic() {
