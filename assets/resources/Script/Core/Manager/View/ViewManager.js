@@ -57,21 +57,18 @@ let ViewManager = cc.Class({
     openUI( pathName, data, zorder ){
         zorder = Utils.isNull( zorder ) ? DefView.ZORDER.UI : zorder;
         let viewObject = this.m_mapView.get( pathName );
-        if( Utils.isNull( viewObject ) ) {
-            viewObject = new ViewBase( DefView.UI_PATH + pathName, data, zorder );
-            viewObject.load( function( node ) {
-                let zorderName = Utils.getKeyByValue( DefView.ZORDER, zorder );
-                let zorderNode = this.m_objScene.getChildByName( "Canvas" ).getChildByName( zorderName );
-                zorderNode.addChild( node, zorder );
-            }.bind( this ) );
-            this.m_mapView.set( pathName, viewObject );
-            this.m_listView.insert( viewObject );
-        } else {
-            viewObject.setData( data );
-            viewObject.setZOrder( zorder );
-            viewObject.updateView();
+        if( !Utils.isNull( viewObject ) ) {
+            this.closeUI( pathName );
         }
-
+        viewObject = new ViewBase( DefView.UI_PATH + pathName, data, zorder );
+        this.m_mapView.set( pathName, viewObject );
+        this.m_listView.insert( viewObject );
+        viewObject.load( function( node ) {
+            let zorderName = Utils.getKeyByValue( DefView.ZORDER, zorder );
+            let zorderNode = this.m_objScene.getChildByName( "Canvas" ).getChildByName( zorderName );
+            zorderNode.addChild( node, zorder );
+            viewObject.updateView();
+        }.bind( this ) );
     },
 
     /**
@@ -97,7 +94,6 @@ let ViewManager = cc.Class({
         // 系统不能自动释放，就要手动调用removeAllChildren
 
         cc.director.loadScene( name, function( _, scene ) {
-            Log.print( "[" + scene.getName() + "] " + DefLog.CODER.CODER_10 );
             let canvas = scene.getChildByName( "Canvas" );
             let designResolution = canvas.getComponent( cc.Canvas ).designResolution;
             for( let key in DefView.ZORDER ) {

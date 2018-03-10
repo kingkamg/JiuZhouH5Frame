@@ -36,8 +36,8 @@ cc.Class({
     },
 
     onDestroy() {
-        if( !Utils.isNull( this.msgIds ) && this.msgIds.length > 0 ) {
-            this.unRegisterEvent( this, this.msgIds );
+        if( !Utils.isNull( this.eventIds ) && this.eventIds.length > 0 ) {
+            this.unRegisterEvent( this, this.eventIds );
         }
     },
 
@@ -45,7 +45,7 @@ cc.Class({
      * 初始化数据
      */
     initData() {
-        this.msgIds = [
+        this.eventIds = [
             DefEvent.CUSTOM.TEST_0,
             DefEvent.CUSTOM.TEST_1,
         ]
@@ -62,8 +62,8 @@ cc.Class({
      * 注册
      */
     register() {
-        if( !Utils.isNull( this.msgIds ) && this.msgIds.length > 0 ) {
-            this.registerEvent( this, this.msgIds );
+        if( !Utils.isNull( this.eventIds ) && this.eventIds.length > 0 ) {
+            this.registerEvent( this, this.eventIds );
         }
     },
 
@@ -78,8 +78,8 @@ cc.Class({
      * 点击卸载事件 回调
      */
     onUnRegister() {
-        if( !Utils.isNull( this.msgIds ) && this.msgIds.length > 0 ) {
-            this.unRegisterEvent( this, this.msgIds );
+        if( !Utils.isNull( this.eventIds ) && this.eventIds.length > 0 ) {
+            this.unRegisterEvent( this, this.eventIds );
         }
     },
 
@@ -105,15 +105,17 @@ cc.Class({
      * 登录
      */
     onLogin() {
-        G.ViewManager.openUI( DefView.UI.Loading );
+        let data = {};
+        data.count = 55;
+        G.ViewManager.openUI( DefView.UI.Loading, data );
     },
 
     /**
      * 消息事件
-     * @param msg
+     * @param event
      */
-    onMessageEvent( msg ) {
-        switch( msg.getId() ) {
+    onEvent( event ) {
+        switch( event.getId() ) {
             case DefEvent.CUSTOM.TEST_0:
                 cc.log( "TEST_0" );
                 break;

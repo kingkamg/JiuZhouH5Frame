@@ -18,13 +18,13 @@ let EventNet = cc.Class({
 
     /**
      * 发送 消息事件
-     * @param msg
+     * @param event
      */
-    sendMsg( msg ) {
-        if( msg.getEventId() === DefEvent.EVENT.NET ) {
-            this.onMessageEvent( msg );
+    sendEvent( event ) {
+        if( event.getEventId() === DefEvent.EVENT.NET ) {
+            this.onEvent( event );
         } else {
-            EventCenter.getInstance().sendMsg( msg );
+            EventCenter.getInstance().sendEvent( event );
         }
     },
 

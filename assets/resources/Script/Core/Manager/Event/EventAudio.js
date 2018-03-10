@@ -18,13 +18,13 @@ let EventAudio = cc.Class({
 
     /**
      * 发送 消息事件
-     * @param msg
+     * @param event
      */
-    sendMsg( msg ) {
-        if( msg.getEventId() === DefEvent.EVENT.AUDIO ) {
-            this.onMessageEvent( msg );
+    sendEvent( event ) {
+        if( event.getEventId() === DefEvent.EVENT.AUDIO ) {
+            this.onEvent( event );
         } else {
-            EventCenter.getInstance().sendMsg( msg );
+            EventCenter.getInstance().sendEvent( event );
         }
     },
 

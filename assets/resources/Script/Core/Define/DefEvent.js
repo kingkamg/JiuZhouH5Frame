@@ -21,6 +21,7 @@ const CUSTOM = {
     // VIEW
     TEST_0: EVENT.VIEW+0,
     TEST_1: EVENT.VIEW+1,
+    TEST_2: EVENT.VIEW+2,
 };
 
 module.exports = {

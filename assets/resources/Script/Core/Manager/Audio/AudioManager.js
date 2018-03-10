@@ -37,8 +37,8 @@ let AudioManager = cc.Class({
         this.m_objMusic = null;
         // 音效ID 列表 { array object }
         this.m_arrSound = [];
-        // 语音ID 列表 { array object }
-        this.m_arrVoice = [];
+        // // 语音ID 列表 { array object }
+        // this.m_arrVoice = [];
 
     },
 

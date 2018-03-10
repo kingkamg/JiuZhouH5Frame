@@ -457,6 +457,8 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
+    "pressedSprite": null,
+    "hoverSprite": null,
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
@@ -475,10 +477,6 @@
       "a": 255
     },
     "_N$normalSprite": null,
-    "_N$pressedSprite": null,
-    "pressedSprite": null,
-    "_N$hoverSprite": null,
-    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 3

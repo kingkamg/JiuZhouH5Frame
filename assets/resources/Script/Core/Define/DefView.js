@@ -36,7 +36,8 @@ const SCENE = {
  * UI
  */
 const UI = {
-    Loading: "Loading"
+    Loading: "Loading",
+    Yellow: "Yellow",
 };
 
 module.exports = {

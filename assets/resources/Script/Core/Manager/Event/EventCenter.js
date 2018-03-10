@@ -36,16 +36,16 @@ let EventCenter = cc.Class({
 
     /**
      * 发送消息
-     * @param msg
+     * @param event
      */
-    sendMsg( msg ) {
-        let eventId = msg.getEventId();
+    sendEvent( event ) {
+        let eventId = event.getEventId();
         switch( eventId ) {
             case DefEvent.EVENT.VIEW:
-                EventManager.getEventView().sendMsg( msg );
+                EventManager.getEventView().sendEvent( event );
                 break;
             case DefEvent.EVENT.NET:
-                EventManager.getEventNet().sendMsg( msg );
+                EventManager.getEventNet().sendEvent( event );
                 break;
             default:
 

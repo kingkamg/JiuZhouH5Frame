@@ -12,33 +12,33 @@ let EventBase = cc.Class({
      */
     ctor() {
         // 存储消息结构 事件列表
-        this.m_objMsgList = {};
+        this.m_objEventList = {};
 
     },
 
     /**
      * 内部函数 注册事件_1
      * @param script
-     * @param msgId
+     * @param eventId
      * @private
      */
-    _register1( script, msgId ) {
-        if( Utils.isNull( this.m_objMsgList[msgId] ) ) {
-            this.m_objMsgList[msgId] = new List();
+    _register1( script, eventId ) {
+        if( Utils.isNull( this.m_objEventList[eventId] ) ) {
+            this.m_objEventList[eventId] = new List();
         }
-        let list = this.m_objMsgList[msgId];
+        let list = this.m_objEventList[eventId];
         list.insert( script );
     },
 
     /**
      * 内部函数 注册事件_2
      * @param script
-     * @param msgIds
+     * @param eventIds
      * @private
      */
-    _register2( script, msgIds ) {
-        for( let i = 0; i < msgIds.length; ++i ) {
-            this._register1( script, msgIds[i] );
+    _register2( script, eventIds ) {
+        for( let i = 0; i < eventIds.length; ++i ) {
+            this._register1( script, eventIds[i] );
         }
     },
 
@@ -70,15 +70,15 @@ let EventBase = cc.Class({
     /**
      * 内部函数 删除注册事件_1
      * @param script
-     * @param msgId
+     * @param eventId
      * @private
      */
-    _unRegister1( script, msgId ) {
-        let list = this.m_objMsgList[msgId];
+    _unRegister1( script, eventId ) {
+        let list = this.m_objEventList[eventId];
         if( !Utils.isNull( list ) && !Utils.isNull( list.find( script ) ) ) {
             list.delete( script );
             if( list.isEmpty() ) {
-                delete this.m_objMsgList[msgId];
+                delete this.m_objEventList[eventId];
             }
         }
     },
@@ -86,12 +86,12 @@ let EventBase = cc.Class({
     /**
      * 内部函数 删除注册事件_2
      * @param script
-     * @param msgIds
+     * @param eventIds
      * @private
      */
-    _unRegister2( script, msgIds ) {
-        for( let i = 0; i < msgIds.length; ++i ) {
-            this._unRegister1( script, msgIds[i] );
+    _unRegister2( script, eventIds ) {
+        for( let i = 0; i < eventIds.length; ++i ) {
+            this._unRegister1( script, eventIds[i] );
         }
     },
 
@@ -121,22 +121,22 @@ let EventBase = cc.Class({
 
     /**
      * 发送 消息事件（提供给子类重写函数，无需实现）
-     * @param msg
+     * @param event
      */
-    sendMsg( msg ) {
+    sendEvent( event ) {
 
     },
 
     /**
      * 接收 消息事件 回调
-     * @param msg {object} EventMsg 消息节点
+     * @param event {object} EventMsg 消息节点
      */
-    onMessageEvent( msg ) {
-        let list = this.m_objMsgList[msg.getId()];
+    onEvent( event ) {
+        let list = this.m_objEventList[event.getId()];
         if( !Utils.isNull( list ) ) {
             list.forEach( function( node ) {
                 let data = node.getData();
-                data.onMessageEvent( msg );
+                data.onEvent( event );
             } );
         }
     },

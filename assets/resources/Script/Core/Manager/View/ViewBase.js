@@ -72,20 +72,20 @@ let ViewBase = cc.Class({
      * 销毁节点
      */
     destroy() {
+        this.unload();
         this.m_strPath = null;
         this.m_objData = null;
         this.m_nZOrder = null;
         this.m_objRootNode.destroy();
-        this.unload();
+        this.m_objRootNode = null;
     },
 
     /**
      * 更新视图
-     * @param data
      */
     updateView() {
         let script = this.m_objRootNode.getComponent( this.getName() );
-        if( Utils.isNull( script ) ) {
+        if( !Utils.isNull( script ) ) {
             script.updateUI( this.m_objData );
         }
     },

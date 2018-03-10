@@ -8,10 +8,10 @@
 //  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
 
-let UIBase = require( "UIBase" );
 let DefView = require( "DefView" );
-let DefEvent = require( "DefEvent" );
+let UIBase = require( "UIBase" );
 let Log = require( "Log" );
+let DefEvent = require( "DefEvent" );
 
 cc.Class({
     extends: UIBase,
@@ -23,10 +23,16 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
+    /**
+     * 开始
+     */
     start () {
 
     },
 
+    /**
+     * 加载
+     */
     onLoad() {
         this.initData();
         this.initView();
@@ -34,13 +40,28 @@ cc.Class({
     },
 
     /**
+     * 销毁
+     */
+    onDestroy() {
+        // 释放消息
+        this.unRegisterEvent( this, this.m_arrEventId );
+
+
+        this.m_nBlackCount = null;
+        this.m_nSelfCount = null;
+        this.m_arrEventId = null
+    },
+
+    /**
      * 初始化数据
      */
     initData() {
         // 打开黄色次数
-        this.m_nYeloowCount = 0;
+        this.m_nBlackCount = 0;
         // 打开自己次数
         this.m_nSelfCount = 0;
+        // 注册消息ID集合
+        this.m_arrEventId = [DefEvent.CUSTOM.TEST_0, DefEvent.CUSTOM.TEST_1];
     },
 
     /**
@@ -54,24 +75,23 @@ cc.Class({
      * 注册
      */
     register() {
-
+        this.registerEvent( this, this.m_arrEventId );
     },
 
     /**
      * 关闭视图
      */
     onCloseUI() {
-        let data = "您好";
-        this.sendEvent( DefEvent.CUSTOM.TEST_0, data );
-        G.ViewManager.closeUI( DefView.UI.Loading );
+        G.ViewManager.closeUI( DefView.UI.Yellow );
     },
 
     /**
-     * 打开黄色视图
+     * 打开黑色视图
      */
-    onOpenYellow() {
-        let data = ++this.m_nYeloowCount;
-        G.ViewManager.openUI( DefView.UI.Yellow, data );
+    onOpenBlack() {
+        let data = {};
+        data.count = ++this.m_nBlackCount;
+        G.ViewManager.openUI( DefView.UI.Loading, data );
     },
 
     /**
@@ -79,7 +99,29 @@ cc.Class({
      * @param data
      */
     updateUI( data ) {
-        this.label_text.string = data.count;
+        this.label_text.string = data;
+    },
+
+    /**
+     * 事件接收
+     * @param event
+     */
+    onEvent( event ) {
+        let data = event.getData();
+        switch( event.getId() ) {
+            case DefEvent.CUSTOM.TEST_0:
+                Log.print( data );
+                break;
+            case DefEvent.CUSTOM.TEST_1:
+                Log.print( data );
+                break;
+            case DefEvent.CUSTOM.TEST_2:
+                Log.print( data );
+                break;
+            default:
+
+                break;
+        }
     },
 
     // update (dt) {},

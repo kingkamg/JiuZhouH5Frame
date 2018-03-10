@@ -3,6 +3,7 @@
  */
 
 let EventManager = require( "EventManager" );
+let EventMsg = require( "EventMsg" );
 
 cc.Class({
     extends: cc.Component,
@@ -90,27 +91,40 @@ cc.Class({
     /**
      * 注册事件
      * @param script
-     * @param msgIds
+     * @param eventIds
      */
-    registerEvent( script, msgIds ) {
-        EventManager.getInstance().getEventView().register( script, msgIds );
+    registerEvent( script, eventIds ) {
+        EventManager.getInstance().getEventView().register( script, eventIds );
     },
 
     /**
      * 卸载事件
      * @param script
-     * @param msgIds
+     * @param eventIds
      */
-    unRegisterEvent( script, msgIds ) {
-        EventManager.getInstance().getEventView().unRegister( script, msgIds );
+    unRegisterEvent( script, eventIds ) {
+        EventManager.getInstance().getEventView().unRegister( script, eventIds );
     },
 
     /**
      * 发送事件
-     * @param msg
+     * @param id {number}
+     * @param data {object}
      */
-    sendEvent( msg ) {
-        EventManager.getInstance().getEventView().sendMsg( msg );
+    sendEvent( id, data ) {
+        let event = new EventMsg();
+        event.setId( id );
+        event.setData( data );
+
+        EventManager.getInstance().getEventView().sendEvent( event );
+    },
+
+    /**
+     * 接收事件
+     * @param event
+     */
+    onEvent( event ) {
+
     },
 
 });
