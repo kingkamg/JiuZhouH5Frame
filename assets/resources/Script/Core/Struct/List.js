@@ -154,17 +154,16 @@ let List = cc.Class({
         let listSize = this.getSize();
         if( listSize <= 0 ) {
             this.m_node = newNode;
-            return;
-        }
-
-        if( about < 0 ) {
-            let firstNode = this.getFirst();
-            firstNode.setPrev( newNode );
-            newNode.setNext( firstNode );
         } else {
-            let lastNode = this.getLast();
-            lastNode.setNext( newNode );
-            newNode.setPrev( lastNode );
+            if( about < 0 ) {
+                let firstNode = this.getFirst();
+                firstNode.setPrev( newNode );
+                newNode.setNext( firstNode );
+            } else {
+                let lastNode = this.getLast();
+                lastNode.setNext( newNode );
+                newNode.setPrev( lastNode );
+            }
         }
     },
 
@@ -178,22 +177,27 @@ let List = cc.Class({
     _insert2( node, data, about ) {
         let newNode = new ListNode();
         newNode.setData( data );
-        if( about < 0 ) {
-            let prevNode = node.getPrev();
-            if( !Utils.isNull( prevNode ) ) {
-                prevNode.setNext( newNode );
-                newNode.setPrev( prevNode );
-            }
-            node.setPrev( newNode );
-            newNode.setNext( node );
+        let listSize = this.getSize();
+        if( listSize <= 0 ) {
+            this.m_node = newNode;
         } else {
-            let nextNode = node.getNext();
-            if( !Utils.isNull( nextNode ) ) {
-                nextNode.setPrev( newNode );
-                newNode.setNext( nextNode );
+            if( about < 0 ) {
+                let prevNode = node.getPrev();
+                if( !Utils.isNull( prevNode ) ) {
+                    prevNode.setNext( newNode );
+                    newNode.setPrev( prevNode );
+                }
+                node.setPrev( newNode );
+                newNode.setNext( node );
+            } else {
+                let nextNode = node.getNext();
+                if( !Utils.isNull( nextNode ) ) {
+                    nextNode.setPrev( newNode );
+                    newNode.setNext( nextNode );
+                }
+                node.setNext( newNode );
+                node.setPrev( node );
             }
-            node.setNext( newNode );
-            node.setPrev( node );
         }
     },
 
@@ -229,6 +233,7 @@ let List = cc.Class({
      * @param data
      */
     delete( data ) {
+        let firstNode = this.getFirst();
         let delNode = this.find( data );
 
         if( Utils.isNull( delNode ) ) {
@@ -253,6 +258,10 @@ let List = cc.Class({
             }
         } else {
             nextNode.setPrev( delNode.getPrev() );
+        }
+
+        if( firstNode === delNode ) {
+            this.m_node = firstNode.getNext();
         }
 
         // 临界点
@@ -282,13 +291,14 @@ let List = cc.Class({
     /**
      * 清理链表
      */
-    clean() {
+    clear() {
         let node = this.getFirst();
         while( !Utils.isNull( node ) ) {
             let nextNode = node.getNext();
             node.destroy();
             node = nextNode;
         }
+        this.m_node = null;
     },
 
     /**

@@ -66,7 +66,7 @@ let ViewManager = cc.Class({
 
         this.m_mapPrefab.clear();
         this.m_mapPrefab = null;
-        this.m_listPrefab.clean();
+        this.m_listPrefab.clear();
         this.m_listPrefab = null
     },
 
@@ -79,14 +79,14 @@ let ViewManager = cc.Class({
      */
     openPrefab( pathName, data, zorder, callback ){
         zorder = Utils.isNull( zorder ) ? DefView.ZORDER.UI : zorder;
-        let view = this.m_mapPrefab.get( pathName );
-        if( !Utils.isNull( view ) ) {
-            this.closePrefab( pathName );
-        }
-        view = new ViewPrefab( DefView.PREFAB_PATH + pathName, data, zorder );
-        this.m_mapPrefab.set( pathName, view );
-        this.m_listPrefab.insert( view );
+        let view = new ViewPrefab( DefView.PREFAB_PATH + pathName, data, zorder );
         view.load( function( node ) {
+            let oldView = this.m_mapPrefab.get( pathName );
+            if( !Utils.isNull( oldView ) ) {
+                this.closePrefab( pathName );
+            }
+            this.m_mapPrefab.set( pathName, view );
+            this.m_listPrefab.insert( view );
             let zorderName = Utils.getKeyByValue( DefView.ZORDER, zorder );
             let zorderNode = this.m_objScene.getScene().getChildByName( "Canvas" ).getChildByName( zorderName );
             zorderNode.addChild( node, zorder );
@@ -106,9 +106,9 @@ let ViewManager = cc.Class({
     closePrefab( pathName ){
         let view = this.m_mapPrefab.get( pathName );
         if( !Utils.isNull( view ) ) {
+            view.destroy();
             this.m_mapPrefab.delete( pathName );
             this.m_listPrefab.delete( view );
-            view.destroy();
         }
     },
 
@@ -138,6 +138,13 @@ let ViewManager = cc.Class({
         // 系统能自动释放，就不管
         // 系统不能自动释放，就要手动调用removeAllChildren
         cc.director.loadScene( name, function( _, scene ) {
+            if( !Utils.isNull( this.m_objScene ) ) {
+                this.m_objScene.destroy();
+                this.m_objScene = null;
+                this.m_objPrefab = null;
+                this.m_mapPrefab.clear();
+                this.m_listPrefab.clear();
+            }
             let canvas = scene.getChildByName( "Canvas" );
             let designResolution = canvas.getComponent( cc.Canvas ).designResolution;
             for( let key in DefView.ZORDER ) {

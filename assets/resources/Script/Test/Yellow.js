@@ -43,7 +43,7 @@ cc.Class({
      * 销毁
      */
     onDestroy() {
-        // 释放消息
+        // // 释放消息
         this.unRegisterEvent( this, this.m_arrEventId );
 
 
@@ -107,7 +107,6 @@ cc.Class({
      * @param event
      */
     onEvent( event ) {
-        let data = event.getData();
         switch( event.getId() ) {
             case DefEvent.CUSTOM.VIEW_0:
 
@@ -116,7 +115,7 @@ cc.Class({
 
                 break;
             case DefEvent.CUSTOM.VIEW_2:
-                Log.print( data );
+
                 break;
             default:
 

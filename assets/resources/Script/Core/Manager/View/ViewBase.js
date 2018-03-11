@@ -30,6 +30,13 @@ let ViewBase = cc.Class({
     },
 
     /**
+     * 销毁视图
+     */
+    destroy() {
+
+    },
+
+    /**
      * 设置路径
      * @param path
      */

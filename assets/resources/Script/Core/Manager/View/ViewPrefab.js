@@ -72,7 +72,9 @@ let ViewPrefab = cc.Class({
         this.m_strPath = null;
         this.m_objData = null;
         this.m_nZOrder = null;
-        this.m_objNode.destroy();
+        if( cc.isValid( this.m_objNode ) ) {
+            this.m_objNode.destroy();
+        }
         this.m_objNode = null;
     },
 

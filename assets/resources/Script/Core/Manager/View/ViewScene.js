@@ -43,6 +43,15 @@ let ViewScene = cc.Class({
     },
 
     /**
+     * 销毁场景
+     */
+    destroy() {
+        if( cc.isValid( this.m_objScene ) ) {
+            this.m_objScene = null;
+        }
+    },
+
+    /**
      * 设置场景
      * @param scene
      */

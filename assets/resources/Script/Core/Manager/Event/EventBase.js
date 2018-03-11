@@ -145,7 +145,7 @@ let EventBase = cc.Class({
             list.forEach( function( node ) {
                 let data = node.getData();
                 data.onEvent( event );
-            } );
+            }.bind( this ) );
         }
     },
 
