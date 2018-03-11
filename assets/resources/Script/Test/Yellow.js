@@ -46,7 +46,6 @@ cc.Class({
         // // 释放消息
         this.unRegisterEvent( this, this.m_arrEventId );
 
-
         this.m_nBlackCount = null;
         this.m_nSelfCount = null;
         this.m_arrEventId = null
@@ -109,10 +108,10 @@ cc.Class({
     onEvent( event ) {
         switch( event.getId() ) {
             case DefEvent.CUSTOM.VIEW_0:
-
+                cc.log( "nnnn1" );
                 break;
             case DefEvent.CUSTOM.VIEW_1:
-
+                cc.log( "nnnn2" );
                 break;
             case DefEvent.CUSTOM.VIEW_2:
 

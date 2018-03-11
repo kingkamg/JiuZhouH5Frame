@@ -35,7 +35,9 @@ let EventBase = cc.Class({
             this.m_mapEventList.set( eventId, new List() );
         }
         let list = this.m_mapEventList.get( eventId );
-        list.insert( script );
+        if( Utils.isNull( list.find( script ) ) ) {
+            list.insert( script );
+        }
     },
 
     /**
