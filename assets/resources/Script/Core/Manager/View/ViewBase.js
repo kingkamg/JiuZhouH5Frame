@@ -1,4 +1,14 @@
 /**
+ * Author: oucheng(ougato@gmail.com)
+ * Copyright (c) 2018-03
+ */
+
+/**
+ * Author: oucheng(ougato@gmail.com)
+ * Copyright (c) 2018-03
+ */
+
+/**
  * 视图基类
  */
 

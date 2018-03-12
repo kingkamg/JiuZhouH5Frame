@@ -1,3 +1,8 @@
+/**
+ * Author: oucheng(ougato@gmail.com)
+ * Copyright (c) 2018-03
+ */
+
 let UIBase = require( "UIBase" );
 let DefView = require( "DefView" );
 

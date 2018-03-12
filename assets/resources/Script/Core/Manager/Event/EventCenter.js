@@ -1,4 +1,9 @@
 /**
+ * Author: oucheng(ougato@gmail.com)
+ * Copyright (c) 2018-03
+ */
+
+/**
  * 事件处理中心
  * @type {Function}
  */

@@ -1,4 +1,9 @@
 /**
+ * Author: oucheng(ougato@gmail.com)
+ * Copyright (c) 2018-03
+ */
+
+/**
  * 声音基类
  * @type {Function}
  */

@@ -1,4 +1,14 @@
 /**
+ * Author: oucheng(ougato@gmail.com)
+ * Copyright (c) 2018-03
+ */
+
+/**
+ * Author: oucheng(ougato@gmail.com)
+ * Copyright (c) 2018-03
+ */
+
+/**
  * 视图管理器
  */
 let List = require( "List" );
@@ -134,9 +144,6 @@ let ViewManager = cc.Class({
      * @param callback {function} 场景加载完后回调
      */
     replaceScene( name, data, callback ){
-        // TODO 如果没有释放之前场景的节点
-        // 系统能自动释放，就不管
-        // 系统不能自动释放，就要手动调用removeAllChildren
         cc.director.loadScene( name, function( _, scene ) {
             if( !Utils.isNull( this.m_objScene ) ) {
                 this.m_objScene.destroy();
