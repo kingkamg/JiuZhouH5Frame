@@ -1,3 +1,7 @@
+/**
+ * Author: luyang(yanghr0209@gmail.com)
+ * Copyright (c) 2018-03
+ */
 
 function Socket(host) {
     this.sequence = 0;
@@ -19,7 +23,6 @@ Socket.prototype = {
     connected() {
         this.IsConnect = true;
         this.notification.emit( "__Connect", "success");
-        cc.log( "send message end" );
     },
 
     message(event) {

@@ -1,3 +1,8 @@
+/**
+ * Author: luyang(yanghr0209@gmail.com)
+ * Copyright (c) 2018-03
+ */
+
 let pbkiller = require('../src/pbkiller');
 
 cc.Class({

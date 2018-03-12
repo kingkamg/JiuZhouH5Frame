@@ -58,6 +58,7 @@ cc.Class({
     onClose() {
         let data = "您好";
         this.sendEvent( DefEvent.CUSTOM.VIEW_0, data );
+        this.sendEvent( DefEvent.CUSTOM.VIEW_1, data );
         G.ViewManager.closePrefab( DefView.PREFAB.Loading );
     },
 

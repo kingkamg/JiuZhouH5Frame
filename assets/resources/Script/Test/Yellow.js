@@ -1,12 +1,7 @@
-// Learn cc.Class:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/class.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/class/index.html
-// Learn Attribute:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/reference/attributes.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/reference/attributes/index.html
-// Learn life-cycle callbacks:
-//  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
-//  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
+/**
+ * Author: oucheng(ougato@gmail.com)
+ * Copyright (c) 2018-03
+ */
 
 let DefView = require( "DefView" );
 let UIBase = require( "UIBase" );
@@ -44,7 +39,7 @@ cc.Class({
      */
     onDestroy() {
         // // 释放消息
-        this.unRegisterEvent( this, this.m_arrEventId );
+        this.unRegisterEvent( this.m_arrEventId );
 
         this.m_nBlackCount = null;
         this.m_nSelfCount = null;
@@ -74,7 +69,7 @@ cc.Class({
      * 注册
      */
     register() {
-        this.registerEvent( this, this.m_arrEventId );
+        this.registerEvent( this.m_arrEventId );
     },
 
     /**

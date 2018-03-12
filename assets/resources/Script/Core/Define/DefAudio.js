@@ -15,7 +15,6 @@ let STATE = {
 
 /**
  * 音效
- * @type {{}}
  */
 let SOUND = {
     MJ2T: "resources/Audio/Sound/MJ2T.mp3",
@@ -23,7 +22,6 @@ let SOUND = {
 
 /**
  * 音乐
- * @type {{}}
  */
 let MUSIC = {
     GAME_BGM: "resources/Audio/Music/BGM.mp3",

@@ -1,3 +1,9 @@
+/**
+ * Author: luyang(yanghr0209@gmail.com)
+ * Copyright (c) 2018-03
+ */
+
+
 let ProtoBuf = require('protobufjs');
 ProtoBuf.Util.IS_NODE = cc.sys.isNative;
 

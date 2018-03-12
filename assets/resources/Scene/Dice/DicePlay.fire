@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "b26abe04-cbb3-43e2-84ab-4f9b94c2a3f1",
+    "_id": "901f8cde-a952-44c0-90e3-2794cdad2b79",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -60,20 +60,23 @@
       },
       {
         "__id__": 6
+      },
+      {
+        "__id__": 8
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 12
+        "__id__": 14
       },
       {
-        "__id__": 13
+        "__id__": 15
       }
     ],
     "_prefab": null,
-    "_id": "e7rR9MHuxAkpNqQIgDKcj4",
+    "_id": "d5eOvFKm1F9Z8w/UjeAZXx",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -128,7 +131,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "c6WDqhqUtKRJFJi1w657us",
+    "_id": "4di9NagQRA67bfsKOsMcOj",
     "_opacity": 120,
     "_color": {
       "__type__": "cc.Color",
@@ -223,28 +226,21 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Button_Login",
+    "_name": "Label_Title",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
     },
-    "_children": [
-      {
-        "__id__": 7
-      }
-    ],
+    "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 9
-      },
-      {
-        "__id__": 10
+        "__id__": 7
       }
     ],
     "_prefab": null,
-    "_id": "1bPEnga6JPf47oPVwYp1Af",
+    "_id": "24SxbghIdJPIxf1uJm1Fg3",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -261,8 +257,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 40
+      "width": 263.89,
+      "height": 50
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -271,7 +267,88 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 300
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 6
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 50,
+    "_fontSize": 50,
+    "_lineHeight": 50,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "摇骰子 游戏",
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Button_GoBack",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [
+      {
+        "__id__": 9
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 11
+      },
+      {
+        "__id__": 12
+      }
+    ],
+    "_prefab": null,
+    "_id": "c722KWnFROAoddh4Rbju1f",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 150,
+      "height": 50
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": -243,
+      "y": 583
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -285,18 +362,18 @@
     "_name": "Label",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 6
+      "__id__": 8
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 8
+        "__id__": 10
       }
     ],
     "_prefab": null,
-    "_id": "e5TOhHLP5L9oKgC3vvm40F",
+    "_id": "129iY1JD9Mx6Fhq4bOJRk/",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -313,8 +390,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 40
+      "width": 150,
+      "height": 50
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -337,18 +414,18 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 7
+      "__id__": 9
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 20,
-    "_fontSize": 20,
-    "_lineHeight": 40,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
+    "_lineHeight": 50,
     "_enableWrapText": false,
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "登录",
+    "_N$string": "返回大厅",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -359,7 +436,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 6
+      "__id__": 8
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -385,7 +462,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 6
+      "__id__": 8
     },
     "_enabled": true,
     "transition": 2,
@@ -407,7 +484,7 @@
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 11
+        "__id__": 13
       }
     ],
     "_N$interactable": true,
@@ -445,7 +522,7 @@
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
     "_N$target": {
-      "__id__": 6
+      "__id__": 8
     }
   },
   {
@@ -453,8 +530,8 @@
     "target": {
       "__id__": 2
     },
-    "component": "Login",
-    "handler": "onClickLogin",
+    "component": "DicePlay",
+    "handler": "onGoBackLobby",
     "customEventData": ""
   },
   {
@@ -474,7 +551,7 @@
     "_fitHeight": true
   },
   {
-    "__type__": "e8751KFNKxAb6HeD+5MrAjn",
+    "__type__": "b317eW36DpK2o5Y9oNOZjyD",
     "_name": "",
     "_objFlags": 0,
     "node": {

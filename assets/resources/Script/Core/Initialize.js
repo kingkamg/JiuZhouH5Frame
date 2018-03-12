@@ -4,7 +4,7 @@
  */
 
 /**
- * 框架 入口初始化
+ * 框架入口初始化
  */
 
 let UIBase = require( "UIBase" );

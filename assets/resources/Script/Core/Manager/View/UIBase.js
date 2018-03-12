@@ -98,8 +98,8 @@ cc.Class({
      * @param script
      * @param eventIds
      */
-    registerEvent( script, eventIds ) {
-        EventManager.getInstance().getEventView().register( script, eventIds );
+    registerEvent( eventIds ) {
+        EventManager.getInstance().getEventView().register( this, eventIds );
     },
 
     /**
@@ -107,8 +107,8 @@ cc.Class({
      * @param script
      * @param eventIds
      */
-    unRegisterEvent( script, eventIds ) {
-        EventManager.getInstance().getEventView().unRegister( script, eventIds );
+    unRegisterEvent( eventIds ) {
+        EventManager.getInstance().getEventView().unRegister( this, eventIds );
     },
 
     /**

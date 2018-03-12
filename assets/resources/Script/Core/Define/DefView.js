@@ -14,8 +14,8 @@ const SPAN = 100;
 const ZORDER = {
     BOTTOM: SPAN * 0,
     UI: SPAN * 1,
-    POPUP: SPAN * 2,
-    TOP: SPAN * 3,
+    TOP: SPAN * 2,
+    POPUP: SPAN * 3,
     SYSTEM: SPAN * 4,
 };
 
@@ -35,6 +35,8 @@ const SCENE_PATH = "Scene/";
 const SCENE = {
     Loading: "Loading",
     Login: "Login",
+    DiceLobby: "DiceLobby",
+    DicePlay: "DicePlay",
 };
 
 /**
@@ -47,6 +49,10 @@ const PREFAB = {
     Audio: "Audio",
     Event: "Event",
     View: "View",
+
+    // 骰子游戏
+    DiceTips: "Dice/DiceTips",
+
 };
 
 module.exports = {

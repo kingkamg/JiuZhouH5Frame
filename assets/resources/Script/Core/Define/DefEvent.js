@@ -5,7 +5,6 @@
 
 /**
  * 间隔ID
- * @type {number}
  */
 const SPAN = 3000;
 

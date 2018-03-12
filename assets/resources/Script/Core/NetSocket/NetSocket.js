@@ -1,3 +1,8 @@
+/**
+ * Author: luyang(yanghr0209@gmail.com)
+ * Copyright (c) 2018-03
+ */
+
 // 获取Socket
 let Socket = require('socket')
 let pbkiller = require('../pbkiller/src/pbkiller');
@@ -6,11 +11,21 @@ let pbkiller = require('../pbkiller/src/pbkiller');
 window.NetSocket = null;
 window.PBKiller = null;
 window.PB = null;
-
+window.G_asyncLoadProto = function () {
+    if( window.PB )
+        return;
+    asyncLoadProto();
+}
 // 加载 resource/pb下的所有 proto
 var loadProto = function () {
     // loadAll自动加载resources/pb下所有proto
-    return PBKiller.loadAll('proto', 'grace.proto.msg');
+    window.PB = PBKiller.loadAll('proto', 'grace.proto.msg');
+}
+// 异步加载 PB 函数，微信小程序 必须 异步
+var asyncLoadProto = function () {
+    PBKiller.preload(() => {
+        loadProto();
+    });
 }
 
 // 创建 NetSocket
@@ -21,14 +36,15 @@ var CreateNetSocket = function ( host ) {
     let socket = Socket( host );
     window.NetSocket = socket;
     window.PBKiller = pbkiller;
-    // 加载 pb 文件
-    window.PB = loadProto();
+    cc.log( "PBKiller = " + PBKiller );
+    if( false && PBKiller )
+        asyncLoadProto(); // 加载 pb 文件
 }
 
 // 创建函数
 var Create = function(){
     cc.log( "NetSocket = " + NetSocket );
-    if( NetSocket && PBKiller )
+    if( NetSocket && PBKiller && PB )
         return;
     var NetConfig = require( "NetConfig" );
     if( NetConfig == null || NetConfig.IP == null || NetConfig.Port == null )

@@ -80,6 +80,10 @@ let ViewManager = cc.Class({
         this.m_listPrefab = null
     },
 
+    openTips( msg,  ) {
+
+    },
+
     /**
      * 打开预制体
      * @param pathName {string} 预制名（prefab文件夹后的路径+预制名）

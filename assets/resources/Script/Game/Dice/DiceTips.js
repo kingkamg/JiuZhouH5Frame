@@ -1,7 +1,3 @@
-/**
- * Author: oucheng(ougato@gmail.com)
- * Copyright (c) 2018-03
- */
 
 let UIBase = require( "UIBase" );
 let DefView = require( "DefView" );
@@ -29,38 +25,24 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
+    // onLoad () {},
+
     start () {
 
     },
 
     /**
-     * 加载
+     * 点击确定
      */
-    onLoad() {
-        this.initData();
-        this.initView();
-        this.register();
-    },
-
-    /**
-     * 初始化数据
-     */
-    initData() {
+    onClickOK() {
 
     },
 
     /**
-     * 初始化视图
+     * 点击取消
      */
-    initView() {
-        G.ViewManager.openPrefab( DefView.PREFAB.Demo );
-    },
-
-    /**
-     * 注册
-     */
-    register() {
-
+    onClickCancel() {
+        G.ViewManager.closePrefab( DefView.PREFAB.DiceTips );
     },
 
     // update (dt) {},
