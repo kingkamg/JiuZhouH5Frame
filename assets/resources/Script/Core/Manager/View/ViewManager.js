@@ -92,10 +92,19 @@ let ViewManager = cc.Class({
      * @param callback {function} 预制体加载完成 回调
      */
     openPrefab( pathName, data, zorder, callback ){
+        let oldView = this.m_mapPrefab.get( pathName );
+        if( !Utils.isNull( oldView ) ) {
+            let lastView = this.m_listPrefab.getLast();
+            if( lastView === oldView ) {
+                if( !lastView.getNode().active ) {
+                    lastView.show();
+                }
+                return ;
+            }
+        }
         zorder = Utils.isNull( zorder ) ? DefView.ZORDER.UI : zorder;
         let view = new ViewPrefab( DefView.PREFAB_PATH + pathName, data, zorder );
         view.load( function( node ) {
-            let oldView = this.m_mapPrefab.get( pathName );
             if( !Utils.isNull( oldView ) ) {
                 this.closePrefab( pathName );
             }

@@ -4,41 +4,61 @@
 
 let UIBase = require( "UIBase" );
 let DefView = require( "DefView" );
+let Utils = require( "Utils" );
 
 cc.Class({
     extends: UIBase,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+
+    },
 
     start () {
 
     },
 
     /**
+     * 选择个数
+     */
+    onSelectAge() {
+        if( Utils.isNull( G.ViewManager.findPrefab( DefView.PREFAB.DiceSelectAge ) ) ) {
+            G.ViewManager.openPrefab( DefView.PREFAB.DiceSelectAge );
+        }
+    },
+
+    /**
+     * 选择点数
+     */
+    onSelectPoint() {
+        G.ViewManager.openPrefab(  );
+    },
+
+    /**
      * 返回到大厅
      */
-    onGoBackLobby() {
-        G.ViewManager.openPrefab( DefView.PREFAB.DiceLobby, null, DefView.ZORDER.POPUP );
+    onClickGoBackLobby() {
+        G.ViewManager.replaceScene( DefView.SCENE.DiceLobby );
+    },
+
+    /**
+     * 随机匹配
+     */
+    onClickRandomMatch() {
+        // 发送协议匹配
+
+    },
+
+    /**
+     * 分享
+     */
+    onClickShare() {
+        G.ViewManager.openPrefab( DefView.DiceShare );
     },
 
     // update (dt) {},

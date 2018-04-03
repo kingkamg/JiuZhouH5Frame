@@ -81,7 +81,7 @@ let Game = cc.Class({
      */
     initNet() {
         // 初始化网络模块
-        require("NetSocket/NetSocket");
+        require("NetSocket");
         // 初始化 PB
         G_asyncLoadProto();
         NetSocket.on( "__Connect", (eventName) => {
@@ -111,7 +111,6 @@ let Game = cc.Class({
      * 运行
      */
     run() {
-        this.checkUpdate();
         G.ViewManager.replaceScene( DefView.SCENE.Login );
     },
 

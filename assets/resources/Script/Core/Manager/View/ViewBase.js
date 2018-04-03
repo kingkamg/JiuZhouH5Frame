@@ -47,6 +47,26 @@ let ViewBase = cc.Class({
     },
 
     /**
+     * 隐藏
+     */
+    hide() {
+        let node = this.getNode();
+        if( node.active ) {
+            node.active = false;
+        }
+    },
+
+    /**
+     * 显示
+     */
+    show() {
+        let node = this.getNode();
+        if( !node.active ) {
+            node.active = true;
+        }
+    },
+
+    /**
      * 设置路径
      * @param path
      */

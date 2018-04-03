@@ -1,4 +1,3 @@
-
 let UIBase = require( "UIBase" );
 let DefView = require( "DefView" );
 
@@ -25,24 +24,35 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad() {
 
-    start () {
+    },
+
+    start() {
 
     },
 
     /**
-     * 点击确定
+     * 点击分享微信
      */
-    onClickOK() {
+    onClickShareWechat() {
+        // 调用sdk分享到微信
 
     },
 
     /**
-     * 点击取消
+     * 点击分享QQ
      */
-    onClickCancel() {
-        G.ViewManager.closePrefab( DefView.PREFAB.DiceTips );
+    onClickShareQQ() {
+        // 调用sdk分享到QQ
+
+    },
+
+    /**
+     * 点击关闭
+     */
+    onClickClose() {
+        G.ViewManager.closePrefab( DefView.PREFAB.DiceShare );
     },
 
     // update (dt) {},

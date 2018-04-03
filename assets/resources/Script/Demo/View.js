@@ -3,8 +3,8 @@
  * Copyright (c) 2018-03
  */
 
-let DefView = require( "DefView" );
 let UIBase = require( "UIBase" );
+let DefView = require( "DefView" );
 
 cc.Class({
     extends: UIBase,
@@ -60,7 +60,8 @@ cc.Class({
      * 点击关闭
      */
     onClickClose() {
-        G.ViewManager.closePrefab( cc.js.getClassName( this.constructor ) );
+        G.ViewManager.closePrefab( DefView.PREFAB.View );
+
     },
 
     // update (dt) {},

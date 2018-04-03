@@ -1,6 +1,5 @@
 /**
- * Author: oucheng(ougato@gmail.com)
- * Copyright (c) 2018-03
+ * 游戏平台
  */
 
 let UIBase = require( "UIBase" );
@@ -29,45 +28,31 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
+    // onLoad () {},
+
     start () {
 
     },
 
     /**
-     * 加载
+     * 返回到登录
      */
-    onLoad() {
-        this.initData();
-        this.initView();
-        this.register();
+    onClickGoBackLogin() {
+        G.ViewManager.replaceScene( DefView.SCENE.Login );
     },
 
     /**
-     * 初始化数据
+     * 点击进入骰子游戏
      */
-    initData() {
-
+    onClickEnterDice() {
+        G.ViewManager.replaceScene( DefView.SCENE.DiceLobby );
     },
 
     /**
-     * 初始化视图
+     * 点击进入弹珠游戏
      */
-    initView() {
-
-    },
-
-    /**
-     * 注册
-     */
-    register() {
-
-    },
-
-    /**
-     * 点击登录
-     */
-    onClickLogin() {
-        G.ViewManager.replaceScene( DefView.SCENE.Platform );
+    onClickEnterHoolde() {
+        
     },
 
     // update (dt) {},

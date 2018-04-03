@@ -9,6 +9,7 @@
 
 let UIBase = require( "UIBase" );
 let DefAudio = require( "DefAudio" );
+let DefView = require( "DefView" );
 
 cc.Class({
     extends: UIBase,
@@ -77,7 +78,7 @@ cc.Class({
      * 点击关闭
      */
     onClickClose() {
-        G.ViewManager.closePrefab( cc.js.getClassName( this.constructor ) );
+        G.ViewManager.closePrefab( DefView.PREFAB.Audio );
     },
 
     // update (dt) {},

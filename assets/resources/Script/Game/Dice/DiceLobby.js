@@ -28,18 +28,34 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+
+    },
 
     start () {
 
     },
 
     /**
-     * 进入玩游戏场景 点击事件
+     * 返回到平台
      */
-    onClickEnterPlay() {
-        G.ViewManager.replaceScene( DefView.SCENE.DicePlay );
+    onClickGoBackPlatform() {
+        G.ViewManager.replaceScene( DefView.SCENE.Platform );
     },
 
-    // update (dt) {},
+    /**
+     * 进入混战模式
+     */
+    onClickEnterModeMelee() {
+        // 发送协议匹配
+        G.ViewManager.openPrefab( DefView.PREFAB.DiceModeMelee );
+    },
+
+    /**
+     * 分享
+     */
+    onClickShare() {
+        G.ViewManager.openPrefab( DefView.PREFAB.DiceShare );
+    },
+
 });

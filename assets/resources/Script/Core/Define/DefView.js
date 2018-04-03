@@ -35,8 +35,14 @@ const SCENE_PATH = "Scene/";
 const SCENE = {
     Loading: "Loading",
     Login: "Login",
+    Platform: "Platform",
+
+    // 骰子游戏
     DiceLobby: "DiceLobby",
     DicePlay: "DicePlay",
+
+    // 弹珠游戏
+
 };
 
 /**
@@ -51,7 +57,10 @@ const PREFAB = {
     View: "View",
 
     // 骰子游戏
+    DiceShare: "Dice/DiceShare",
     DiceTips: "Dice/DiceTips",
+    DiceSelectAge: "Dice/DiceSelectAge",
+    DiceModeMelee : "Dice/DiceModeMelee",
 
 };
 

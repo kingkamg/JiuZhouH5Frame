@@ -1,6 +1,5 @@
 /**
- * Author: oucheng(ougato@gmail.com)
- * Copyright (c) 2018-03
+ * 骰子游戏 混战模式
  */
 
 let UIBase = require( "UIBase" );
@@ -29,45 +28,26 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
+    // onLoad () {},
+
     start () {
 
     },
 
     /**
-     * 加载
+     * 点击返回 关闭当前预制
      */
-    onLoad() {
-        this.initData();
-        this.initView();
-        this.register();
+    onClickClose() {
+        G.ViewManager.closePrefab( DefView.PREFAB.DiceModeMelee );
     },
 
-    /**
-     * 初始化数据
-     */
-    initData() {
-
-    },
 
     /**
-     * 初始化视图
+     * 点击随机匹配
      */
-    initView() {
-
-    },
-
-    /**
-     * 注册
-     */
-    register() {
-
-    },
-
-    /**
-     * 点击登录
-     */
-    onClickLogin() {
-        G.ViewManager.replaceScene( DefView.SCENE.Platform );
+    onClickRandomMatch() {
+        // 发送协议匹配
+        G.ViewManager.replaceScene( DefView.SCENE.DicePlay );
     },
 
     // update (dt) {},
